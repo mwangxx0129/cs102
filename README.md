@@ -7,7 +7,7 @@
 |Queue,Stack,Deque|Tree Structure, TreeSet| Heap, Priority Queue|Guava(Google Core Java Libraries|
 |LinkedList,ArrayDeque|Hash,HashTable|LRU Cache,LinkedHashMap|Other Open Source Java Library|
 
-### Course Syllabus - Java Foundation
+### Course Syllabus - Java Algorithm
 
 | week1 - Linear Structure| week2 - Tree Structure | week3 - Graph Search | week4 - DP and advance|
 |-------|-------| ----- | ----- |
@@ -16,9 +16,18 @@
 |Queue,Deque|Binary Tree|Dijkstra algorithm(BFS)|Advanced DP|
 |Stack|Binary Search Tree|Union Find|Advanced Structure(e.g. Segment tree, Binary Indexed Tree, etc)
 
-### Course Syllabus - Java Foundation
+### Course Syllabus - Java Advanced Algorithm
 
 Algorithm Advance: New Problems on Same Topic Correspondingly
+
+---
+### week0
+Primitive idea -> Work Solution -> Optimization
+A. 150. Evaluate Reverse Polish Notation
+B. [198. House Robber](https://leetcode.com/problems/house-robber/description/)
+   213 House Robber II --- Strategy Tree -> DP
+C. [323. Number of Connected Components in an Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/description/)
+---
 
 ### week1
 #### Java Foundation
@@ -52,3 +61,7 @@ private static class Node<E> {
     }
 }
 ```
+
+#### Java Algorithm
+
+#### Java Advanced Algorithm
