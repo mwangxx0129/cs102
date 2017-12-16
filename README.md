@@ -23,11 +23,11 @@ Algorithm Advance: New Problems on Same Topic Correspondingly
 ---
 ### week0
 
-Primitive idea -> Work Solution -> Optimization
-A. 150. Evaluate Reverse Polish Notation
-B. [198. House Robber](https://leetcode.com/problems/house-robber/description/)
+- Primitive idea -> Work Solution -> Optimization
+- A. 150. Evaluate Reverse Polish Notation
+- B. [198. House Robber](https://leetcode.com/problems/house-robber/description/)
    213 House Robber II --- Strategy Tree -> DP
-C. [323. Number of Connected Components in an Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/description/)
+- C. [323. Number of Connected Components in an Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/description/)
 
 ---
 
