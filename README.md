@@ -19,3 +19,36 @@
 ### Course Syllabus - Java Foundation
 
 Algorithm Advance: New Problems on Same Topic Correspondingly
+
+### week1
+#### Java Foundation
+1. Utility Class: Arrays, Math
+2. ArrayList: 1.5x Grow, >> 1
+3. ArrayList: no holes
+4. LinkedList: Nested static class, Double Link
+5. LinkedList: Space consuming
+6. ArrayDeque: circular queue
+7. Array Deque: 2x Grow, (head - 1) & (length - 1)
+8. ArrayDeque: O(1) Amortized performance for queue
+9. ArrayDeque: fastest practice for algorithm
+
+Basically, Read the source code from Official library
+http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/util/Arrays.java?av=f
+
+e.g.
+Arrays toString()
+
+Node<E> in LinkedList<E> 
+
+```java
+private static class Node<E> {
+    E item;
+    Node<E> next;
+    Node<E> prev;
+    Node (Node<E> prev, E item, Node<E> next) {
+        this.item = item;
+        this.prev = prev;
+        this.next = next;
+    }
+}
+```
