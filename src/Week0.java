@@ -193,9 +193,7 @@ public class Week0 {
                 count --;
             }
         }
-
-        System.out.println(count);
-        return  -1;
+        return  count;
     }
 
     private int find(int x, int[] father) {
