@@ -66,4 +66,19 @@ private static class Node<E> {
 
 #### Java Algorithm
 
+- Reorder List
+- Reverse Nodes in k-Group
+- Three Sum - method 1
+- Three Sum - method 2
+- Length of Longest substring - method 1
+- Length of Longest substring - method 2
+- Moving Average from Data Stream
+- Simply Path - method 1
+- Simply Path - method 2
+- Largest Rectangle in Histogram
+- Trapping Water - method 1
+- Trapping Water - method 2
+
+
+
 #### Java Advanced Algorithm
