@@ -172,4 +172,105 @@ public class Week1 {
         }
         return s.substring(L, R);
     }
+
+    private static class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int val) {
+            this.val = val;
+            this.next = null;
+        }
+    }
+
+    public ListNode partition(ListNode head, int x) {
+
+        ListNode lessPre = new ListNode(-1);
+        ListNode greaterPre = new ListNode(-1);
+        ListNode lessDummy = lessPre;
+        ListNode greaterDummy = greaterPre;
+
+        ListNode cur = head;
+        while (cur != null) {
+            if (cur.val < x) {
+                lessPre.next = cur;
+                lessPre = lessPre.next;
+            } else {
+                greaterPre.next = cur;
+                greaterPre = greaterPre.next;
+            }
+            cur = cur.next;
+        }
+        lessPre.next = greaterDummy.next;
+        greaterPre.next = null;
+
+        return lessDummy.next;
+    }
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+
+        ListNode dummy = new ListNode(-1);
+        ListNode slow = dummy;
+        ListNode fast = dummy;
+        dummy.next = head;
+
+        int count = n;
+        while (count != 0) {
+            -- count;
+            fast = fast.next;
+        }
+        while (fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        slow.next = slow.next.next;
+        return dummy.next;
+    }
+
+    public void sortColor(int[] arr) {
+        if (arr == null || arr.length < 2) {
+            return;
+        }
+        int l = 0, r = arr.length - 1;
+        int i = 0;
+        while (i <= r) {
+            if (arr[i] < 1) {
+                swap(arr, l ++, i ++);
+            } else if (arr[i] == 1) {
+                ++ i;
+            } else {
+                swap(arr, i, r --);
+            }
+        }
+    }
+
+    private void swap(int[] arr, int l, int r) {
+        if (arr[l] != arr[r]) {
+            arr[l] ^= arr[r];
+            arr[r] ^= arr[l];
+            arr[l] ^= arr[r];
+        }
+    }
+
+    public boolean isValid(String s) {
+        Deque<Character> stack = new ArrayDeque<>();
+        char[] sCh = s.toCharArray();
+        for (char c : sCh) {
+            switch (c) {
+                case '(':
+                    stack.offerLast(')');
+                    break;
+                case '[':
+                    stack.offerLast(']');
+                    break;
+                case '{':
+                    stack.offerLast('}');
+                    break;
+                default:
+                    if (stack.isEmpty() || stack.pollLast() != c) {
+                        return false;
+                    }
+            }
+        }
+        return stack.isEmpty();
+    }
 }
