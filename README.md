@@ -64,7 +64,20 @@ private static class Node<E> {
 }
 ```
 
+#### Java pre-Algorithm
+
+- Two Sum - method 1
+- Two Sum - method 2
+- Evaluate Reverse Polish Rotation
+- Gas Station
+- Minimum Window Substring
+- Partition List
+- Remove Nth Node From Tail
+- Sort Colors
+- Valid Parentheses
+
 #### Java Algorithm
+
 
 - Reorder List
 - Reverse Nodes in k-Group
