@@ -416,4 +416,32 @@ public class Week1 {
         }
     }
 
+    public String simplifyPath(String path) {
+        String[] paths = path.split("/");
+        Deque<String> deck = new ArrayDeque<>();
+        for (String s : paths) {
+            switch (s) {
+                case ".":
+                    //nothing
+                    break;
+                case "..":
+                    deck.pollLast();
+                    break;
+                default:
+                    if (s.length() > 0 )
+                        deck.offerLast(s);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("/");
+        while(!deck.isEmpty()) {
+            sb.append(deck.pollFirst());
+            if (deck.isEmpty()) {
+                break;
+            }
+            sb.append("/");
+        }
+        return sb.toString();
+    }
+
 }
