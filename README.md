@@ -78,7 +78,6 @@ private static class Node<E> {
 
 #### Java Algorithm
 
-
 - Reorder List
 - Reverse Nodes in k-Group
 - Three Sum - method 1
@@ -95,3 +94,13 @@ private static class Node<E> {
 
 
 #### Java Advanced Algorithm
+
+- highest product of 3 (not in leetcode)
+- Container with most water
+- candy
+- Top K elements
+- Sort transformed array
+- Linked List cycle 2
+- Remove k digits
+- 3 Sum smaller
+- Closest Binary tree value 2
