@@ -86,7 +86,7 @@ private static class Node<E> {
 - Length of Longest substring - method 2
 - Moving Average from Data Stream
 - Simply Path - method 1
-- Simply Path - method 2
+->Simply Path - method 2
 - Largest Rectangle in Histogram
 - Trapping Water - method 1
 - Trapping Water - method 2
