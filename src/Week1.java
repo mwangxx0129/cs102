@@ -273,4 +273,147 @@ public class Week1 {
         }
         return stack.isEmpty();
     }
+
+    public void reorderList(ListNode head) {
+        // corner case
+        if (head == null || head.next == null) {
+            return ;
+        }
+        // 1. find mid (odd even)
+        ListNode mid = findMid(head);
+        ListNode secondHead = mid.next;
+        mid.next = null;
+
+        // 2. reverse second part
+        ListNode secondDummy = new ListNode(-1);
+
+        // 3. merge two list
+        merge(head, secondDummy.next);
+
+    }
+    private void printListNode(ListNode head) {
+        while (head != null) {
+            System.out.println(head.val);
+            head = head.next;
+        }
+    }
+
+    private ListNode findMid(ListNode head) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        System.out.println("slow: " + slow.val);
+        return slow; // slow is the last element in first part
+    }
+
+    private ListNode reverse(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+        return pre;
+    }
+
+    private void merge(ListNode firstHead, ListNode secondHead) {
+        ListNode dummy = new ListNode(-1);
+        dummy.next = firstHead;
+        ListNode first = firstHead;
+        ListNode second = secondHead;
+        ListNode pre = dummy;
+        while (first != null && second != null) {
+            pre.next = first;
+            first = first.next;
+            pre = pre.next;
+
+            pre.next = second;
+            second = second.next;
+            pre = pre.next;
+        }
+        pre.next = first;
+    }
+
+    public ListNode reverseKGroup(ListNode head, int k) {
+        if (head == null || k <= 1) {
+            return head;
+        }
+        ListNode dummy = new ListNode(-1);
+        ListNode pre = dummy;
+        dummy.next = head;
+        int count = k;
+
+        while (head != null) {
+            -- count;
+            if (count == 0) {
+                pre = reverse(pre, head.next);
+                head = pre.next;
+                count = k;
+            } else {
+                head = head.next;
+            }
+        }
+        return dummy.next;
+    }
+
+    private ListNode reverse(ListNode preHead, ListNode nextHead) {
+        ListNode tail = preHead.next;
+        ListNode cur = tail.next;
+        while(cur != nextHead) {
+            ListNode tmp = cur.next;
+            cur.next = preHead.next;
+            preHead.next = cur;
+            cur = tmp;
+        }
+        tail.next = nextHead;
+        return tail;
+    }
+
+    public int lengthOfLongestSubstring(String s) {
+        int[] map = new int[128];
+        int j = 0;
+        char[] sCh = s.toCharArray();
+        int max = 0;
+        for (int i = 0; i < sCh.length; ++ i) {
+            while(j < sCh.length && map[sCh[j]] == 0) {
+                ++ map[sCh[j]];
+                ++ j;
+            }
+            if (j == sCh.length || map[sCh[j]] == 1) {
+                max = Math.max(max, j - i);
+            }
+            map[sCh[i]] = 0;
+        }
+        return max;
+    }
+
+    class MovingAverage {
+        private Deque<Integer> queue;
+        private int sum;
+        private int size;
+        /** Initialize your data structure here. */
+        public MovingAverage(int size) {
+            queue = new ArrayDeque<>();
+            this.size = size;
+            this.sum = 0;
+        }
+
+        public double next(int val) {
+
+            if (queue.size() == size) {
+                sum -= queue.pollFirst();
+            }
+            queue.offerLast(val);
+            sum += val;
+            return 1.0 * sum / queue.size();
+        }
+    }
+
 }
