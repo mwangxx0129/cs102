@@ -444,4 +444,116 @@ public class Week1 {
         return sb.toString();
     }
 
+    public String simplifyPath_method_II(String path) {
+        if (path == null || path.length() == 0) {
+            return new String();
+        }
+        String[] paths = path.split("/");
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+
+        for (int i = paths.length - 1; i >= 0; -- i) {
+            if (paths[i].equals("..")) {
+                ++ count;
+            } else {
+                if (!paths[i].equals(".") && !paths[i].equals("")) {
+                    if (count > 0) {
+                        -- count;
+                    } else {
+                        sb.insert(0, "/" + paths[i]);
+                    }
+                }
+            }
+        }
+
+        return sb.length() == 0 ? "/" : sb.toString();
+
+    }
+
+    public int largestRectangleArea(int[] heights) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        int maxArea = 0;
+        for (int i = 0; i <= heights.length; ++ i) {
+            int num = i == heights.length ? -1 : heights[i];
+            while (!stack.isEmpty() && num < heights[stack.peekLast()]){
+                int h = heights[stack.pollLast()];
+                int w = i - (stack.isEmpty() ? -1 : stack.peekLast()) - 1;
+                maxArea = Math.max(h * w, maxArea);
+            }
+            stack.offerLast(i);
+        }
+        return maxArea;
+    }
+
+    public int trap_two_pointer(int[] height) {
+        Deque<Integer> stack = new ArrayDeque<>();
+        int Area = 0;
+        for (int i = 0; i < height.length; ++ i) {
+            int num = height[i];
+            while(!stack.isEmpty() && height[stack.peekLast()] < num) {
+                int h = height[stack.pollLast()];
+                if (!stack.isEmpty()) {
+                    int width = i - stack.peekLast() - 1;
+                    int high = Math.min(height[stack.peekLast()], num) -  h;
+                    Area += width * high;
+                }
+            }
+            stack.offerLast(i);
+        }
+        return Area;
+    }
+
+    public int trap_stack(int[] height) {
+        int l = 0, r = height.length - 1;
+        int area = 0;
+        while (l < r) {
+            if (height[l] < height[r]) {
+                area += Math.max(height[l] - height[l + 1], 0);
+                height[l + 1] = Math.max(height[l], height[++ l]);
+            } else {
+                area += Math.max(height[r] - height[r - 1], 0);
+                height[r - 1] = Math.max(height[r], height[-- r]);
+            }
+        }
+        return area;
+    }
+
+    public List<List<Integer>> threeSum(int[] array) {
+        List<List<Integer>> res = new ArrayList<>();
+        if (array == null || array.length < 3) {
+            return res;
+        }
+        Arrays.sort(array);
+        for (int i = 0; i < array.length - 2; ) {
+            int fix = array[i];
+            int l = i + 1;
+            int r = array.length - 1;
+            while (l < r) {
+                if (array[l] + array[r] + fix == 0) {
+                    List<Integer> sub = new ArrayList<>();
+                    sub.add(fix);
+                    sub.add(array[l ++]);
+                    sub.add(array[r --]);
+                    res.add(sub);
+                    // skip duplicate
+                    while (l < r && array[l] == array[l - 1]) {
+                        l ++;
+                    }
+                    while (l < r && array[r] == array[r + 1]) {
+                        r --;
+                    }
+                } else if (array[l] + array[r] + fix < 0){
+                    r --;
+                } else {
+                    l ++;
+                }
+            }
+            ++ i;
+            // skip duplicate for fix
+            while (i < array.length - 2 && array[i] == array[i - 1]) {
+                ++ i;
+            }
+        }
+        return res;
+    }
 }
