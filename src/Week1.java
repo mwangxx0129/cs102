@@ -641,4 +641,48 @@ public class Week1 {
     private int cal(int x, int a, int b, int c) {
         return a * x * x + b * x + c;
     }
+
+    public String removeKdigits(String num, int k) {
+        if (num == null || num.length() == 0 || num.length() == k) return "0";
+        char[] s = num.toCharArray();
+        Deque<Character> deck = new ArrayDeque<>();
+        for (int i = 0; i < s.length; ++ i) {
+            while (k > 0 && !deck.isEmpty() && deck.peekLast() > s[i]) {
+                deck.pollLast();
+                k --;
+            }
+            deck.offerLast(s[i]);
+        }
+        // corner case 1111
+        while (k > 0) {
+            deck.pollLast();
+            k --;
+        }
+        // generate num
+        StringBuilder sb = new StringBuilder();
+        while (!deck.isEmpty()) {
+            sb.append(deck.pollFirst());
+        }
+        // removing leading zero
+        while (sb.length() > 1 && sb.charAt(0) == '0') {
+            sb.deleteCharAt(0);
+        }
+        return sb.toString();
+    }
+
+    public int threeSumSmaller(int[] nums, int target) {
+        if (nums == null || nums.length < 3) return 0;
+
+        Arrays.sort(nums);
+        int res = 0;
+        for (int i = 0; i < nums.length - 2; ++ i) {
+            int l = i + 1;
+            int r = nums.length - 1;
+            while (l < r)
+                if (nums[i] + nums[l] + nums[r] < target) res += r - l ++;
+                else -- r;
+        }
+        return res;
+    }
+
 }

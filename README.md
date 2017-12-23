@@ -100,7 +100,15 @@ private static class Node<E> {
 - candy
 - Top K elements
 - Sort transformed array
-- Linked List cycle 2
-- Remove k digits -
+- Linked List cycle 2 - math prove
+- Remove k digits
 - 3 Sum smaller
-- Closest Binary tree value 2
+- Closest Binary tree value 2 -
+
+#### Discussion 12_22
+- Sorted Array to BST
+- Spiral Matrix
+- Merge Sort
+- Search in Rotated Sorted Array
+- ZigZag Level Order Traversal 
+- Delete a Node in BST 
