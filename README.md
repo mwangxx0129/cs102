@@ -86,7 +86,7 @@ private static class Node<E> {
 - Length of Longest substring - method 2
 - Moving Average from Data Stream
 - Simply Path - method 1
-->Simply Path - method 2
+- Simply Path - method 2
 - Largest Rectangle in Histogram
 - Trapping Water - method 1
 - Trapping Water - method 2
@@ -95,12 +95,12 @@ private static class Node<E> {
 
 #### Java Advanced Algorithm
 
-- highest product of 3 (not in leetcode)
+- highest product of 3 (not in leetcode) -
 - Container with most water
 - candy
 - Top K elements
 - Sort transformed array
 - Linked List cycle 2
-- Remove k digits
+- Remove k digits -
 - 3 Sum smaller
 - Closest Binary tree value 2

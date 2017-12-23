@@ -556,4 +556,89 @@ public class Week1 {
         }
         return res;
     }
+
+    // java advanced algorithm
+    public int maxArea(int[] height) {
+        if (height == null || height.length <= 1) {
+            return 0;
+        }
+        int l = 0, r = height.length - 1;
+        int area = 0;
+        while (l < r) {
+            if (height[l] < height[r]) {
+                area = Math.max(area, height[l ++] * (r - l + 1));
+            } else {
+                area = Math.max(area, height[r --] * (r - l + 1));
+            }
+        }
+        return area;
+    }
+
+    public int candy(int[] ratings) {
+        if (ratings == null || ratings.length == 0) {
+            return 0;
+        }
+        int sum = 0;
+        int[] c = new int[ratings.length];
+        c[0] = 1;
+        for(int i = 1; i < c.length; ++ i) {
+            if (ratings[i] > ratings[i - 1]) c[i] = c[i - 1] + 1;
+            else c[i] = 1;
+        }
+
+        sum = c[c.length - 1];
+        for (int i = c.length - 2; i >= 0; -- i) {
+            if (ratings[i] > ratings[i + 1] && c[i] < c[i + 1] + 1)
+                c[i] =  c[i + 1] + 1;
+            sum += c[i];
+        }
+        return sum;
+    }
+
+    public List<Integer> topKFrequent(int[] nums, int k) {
+        List<Integer>[] bucket = new List[nums.length + 1];
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : nums) {
+            // source code:
+            // Node e;
+            // return (e = map.get(key) == null) ? defaultVal : e.val;
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        for (int key : map.keySet()) {
+            int freq = map.get(key);
+            if (bucket[freq] == null) {
+                bucket[freq] = new ArrayList<>();
+            }
+            bucket[freq].add(key);
+        }
+        List<Integer> res = new ArrayList<>();
+        for (int i = bucket.length - 1; i >= 0 && res.size() < k; -- i) {
+            if (bucket[i] != null) {
+                res.addAll(bucket[i]);
+            }
+        }
+        return res;
+    }
+
+    public int[] sortTransformedArray(int[] nums, int a, int b, int c) {
+        if (nums == null || nums.length == 0) {
+            return null;
+        }
+        int[] sorted = new int[nums.length];
+        int l = 0, r = nums.length - 1;
+        int index = a > 0 ? nums.length - 1 : 0;
+        if (a > 0)
+            while(l <= r)
+                sorted[index --] = cal(nums[l], a, b, c) < cal(nums[r], a, b, c)
+                        ? cal(nums[r --], a, b, c) : cal(nums[l ++], a, b, c);
+        else
+            while (l <= r)
+                sorted[index ++] = cal(nums[l], a, b, c) < cal(nums[r], a, b, c)
+                        ? cal(nums[l ++], a, b, c) : cal(nums[r --], a, b, c);
+        return sorted;
+    }
+
+    private int cal(int x, int a, int b, int c) {
+        return a * x * x + b * x + c;
+    }
 }
