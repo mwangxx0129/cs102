@@ -100,7 +100,7 @@ private static class Node<E> {
 - candy
 - Top K elements
 - Sort transformed array
-- Linked List cycle 2 - math prove
+- Linked List cycle 2 - configure out math prove
 - Remove k digits
 - 3 Sum smaller
 - Closest Binary tree value 2 -
