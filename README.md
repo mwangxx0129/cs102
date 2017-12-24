@@ -112,3 +112,20 @@ private static class Node<E> {
 - Search in Rotated Sorted Array --- binary search
 - ZigZag Level Order Traversal  --- bfs --- if the res save treenode, use res sublist as pointer
 - Delete a Node in BST 
+
+#### Week2
+#### Java Foundation
+
+#### Java pre-Algorithm
+
+#### Java Algorithm
+- Sorted Array to BST
+- Spiral Matrix
+- Merge Sort
+- Search in Rotated Sorted Array
+- ZigZag Level Order Traversal
+- Delete a Node in BST 
+
+#### Java Advanced Algorithm
+
+#### Discussion 12_26
