@@ -106,9 +106,9 @@ private static class Node<E> {
 - Closest Binary tree value 2 -
 
 #### Discussion 12_22
-- Sorted Array to BST
-- Spiral Matrix
-- Merge Sort
-- Search in Rotated Sorted Array
-- ZigZag Level Order Traversal 
+- Sorted Array to BST --- divide conquer
+- Spiral Matrix --- scan l->r u->b r->l b->u
+- Merge Sort --- divide conquer merge
+- Search in Rotated Sorted Array --- binary search
+- ZigZag Level Order Traversal  --- bfs --- if the res save treenode, use res sublist as pointer
 - Delete a Node in BST 
