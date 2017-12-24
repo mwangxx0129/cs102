@@ -194,4 +194,43 @@ public class Week2 {
         }
         return res;
     }
+
+    public TreeNode deleteNode(TreeNode root, int key) {
+        if (root == null) return null;
+        TreeNode dummy = new TreeNode(-1);
+        TreeNode pre = dummy;
+        TreeNode cur = root;
+        dummy.left = root;
+        // find target TreeNode
+        while (cur != null && cur.val != key) {
+            pre = cur;
+            if (cur.val > key) {
+                cur = cur.left;
+            } else {
+                cur = cur.right;
+            }
+        }
+        if (cur == null) return root;
+
+        TreeNode target = cur;
+        // has two children
+        if (cur.left != null && cur.right != null) {
+            // get the min val in right subtree
+            pre = cur;
+            cur = cur.right;
+            while (cur.left != null) {
+                pre = cur;
+                cur = cur.left;
+            }
+        }
+        target.val = cur.val;
+
+        // has at most 1 children
+        if (pre.left == cur) {
+            pre.left = cur.left != null ? cur.left : cur.right;
+        } else {
+            pre.right = cur.left != null ? cur.left : cur.right;
+        }
+        return dummy.left;
+    }
 }
