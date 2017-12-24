@@ -115,6 +115,15 @@ private static class Node<E> {
 
 #### Week2
 #### Java Foundation
+- 2's complement, Modular/Remainder operation, X mod 2 ^ n = X & (2 ^ n - 1)
+- Hash Code: many to one
+- Hashing: Probing vs Separate Chain
+- Hash Table: Load factor, Rehashing
+- Java HashMap: Use separate chain, modular optimization
+- Java HashSet: Wrapper of Hashmap
+- TreeMap: Red-black tree, sorted keys, O(log N)
+- JVM: virtual machine as running environment
+- Stack space, heap space, GC
 
 #### Java pre-Algorithm
 
