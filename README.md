@@ -131,6 +131,12 @@ copyRandomList_method2
 isBadVersion
 upsideDownBinaryTree
 upsideDownBinaryTree_method2
+Level Order Traversal
+Search a 2D Matrix
+Symmetric tree
+Longest consecutive Sequence
+Search/Insert a Node in BST
+Validate a BST
 
 #### Java Algorithm
 - Sorted Array to BST

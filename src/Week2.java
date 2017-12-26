@@ -339,4 +339,75 @@ public class Week2 {
         return newRoot;
     }
 
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        Deque<TreeNode> queue = new ArrayDeque<>();
+        if (root == null) {
+            return res;
+        }
+        queue.offerLast(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> sub = new ArrayList<>();
+            for (int i = 0; i < size; ++ i) {
+                TreeNode node = queue.pollFirst();
+                sub.add(node.val);
+                if (node.left != null) {
+                    queue.offerLast(node.left);
+                }
+                if (node.right != null) {
+                    queue.offerLast(node.right);
+                }
+            }
+            res.add(sub);
+        }
+        return res;
+    }
+
+    public boolean searchMatrix(int[][] matrix, int target) {
+        int m, n;
+        if (matrix == null ||(m = matrix.length) == 0  || (n = matrix[0].length) == 0) {
+            return false;
+        }
+        int l = 0, r = m * n - 1;
+        while (l + 1 < r) {
+            int mid = l + (r - l) / 2;
+            if (matrix[mid / n][mid % n] > target) {
+                r = mid;
+            } else {
+                l = mid;
+            }
+        }
+        return matrix[l / n][l % n] == target || matrix[r / n][r % n] == target;
+    }
+
+    public boolean isSymmetric(TreeNode root) {
+        if (root == null)
+            return true;
+        return helper(root.left, root.right);
+    }
+    private boolean helper(TreeNode l, TreeNode r) {
+        if (l == null || r == null) return l == r;
+        if (l.val != r.val) return false;
+        return helper(l.left, r.right) && helper(l.right, r.left);
+    }
+
+    public int longestConsecutive(int[] nums) {
+        Set<Integer> hash = new HashSet<>();
+        for(int num : nums) {
+            hash.add(num);
+        }
+
+        int max = 0;
+        for (int num : nums) {
+            int t = num;
+            int count = 1;
+            while (hash.remove( ++ t)) count ++;
+            t = num;
+            while (hash.remove(-- t)) count ++;
+            max = Math.max(max, count);
+        }
+        return max;
+    }
+
 }
