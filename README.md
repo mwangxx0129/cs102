@@ -144,8 +144,18 @@ Validate a BST
 - Merge Sort
 - Search in Rotated Sorted Array
 - ZigZag Level Order Traversal
-- Delete a Node in BST 
+- Delete a Node in BST
+- Path Sum I~V -
+- Largest BST SubTree -
 
 #### Java Advanced Algorithm
+- sqrt -
+- Count Complete Tree Nodes -
+- Find Leaves of Tree -
+- Invert Binary tree -
+- Largest BST -
+- Russian Doll Envolopes -
+- Is Subsequence -
+- Split Array Largest Sum -
 
 #### Discussion 12_26

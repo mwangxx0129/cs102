@@ -410,4 +410,71 @@ public class Week2 {
         return max;
     }
 
+    private class RT {
+        boolean isValid;
+        int min;
+        int max;
+        RT(boolean isValid, int min, int max) {
+            this.isValid = isValid;
+            this.min = min;
+            this.max = max;
+        }
+    }
+
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        return helper(root).isValid;
+    }
+
+    private RT helper(TreeNode root) {
+        if (root == null) {
+            return new RT(true, Integer.MAX_VALUE, Integer.MIN_VALUE);
+        }
+        RT l = helper(root.left);
+        RT r = helper(root.right);
+        if (!l.isValid || !r.isValid) {
+            return new RT(false, 0, 0);
+        }
+        if (root.left != null && l.max >= root.val
+                || root.right != null && r.min <= root.val) {
+            return new RT(false, 0, 0);
+        }
+        return new RT(true, Math.min(l.min, root.val), Math.max(r.max, root.val));
+    }
+
+    public TreeNode search(TreeNode root, int val) {
+        if (root == null || root.val == val) return root;
+        TreeNode cur = root;
+        while (cur != null) {
+            if (cur.val == val) {
+                return cur;
+            } else if (cur.val < val){
+                cur = cur.right;
+            } else {
+                cur = cur.left;
+            }
+        }
+        return null;
+    }
+
+    public TreeNode search_method2(TreeNode root, int val) {
+        if (root == null || root.val == val) return root;
+        if (root.val > val) {
+            return search_method2(root.left, val);
+        } else {
+            return search_method2(root.right, val);
+        }
+    }
+
+    public TreeNode insert(TreeNode root, int val) {
+        if (root == null) return new TreeNode(val);
+        if (root.val > val) {
+            root.left = insert(root.left, val);
+        } else if(root.val < val) {
+            root.right =  insert(root.right, val);
+        }
+        return root;
+    }
 }
