@@ -1,7 +1,4 @@
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 public class Week2 {
     class TreeNode {
@@ -232,5 +229,76 @@ public class Week2 {
             pre.right = cur.left != null ? cur.left : cur.right;
         }
         return dummy.left;
+    }
+
+    class RandomListNode {
+        int label;
+        RandomListNode next, random;
+        RandomListNode(int x) {
+            this.label = x;
+        }
+    }
+
+    public RandomListNode copyRandomList(RandomListNode head) {
+        if (head == null) {
+            return null;
+        }
+        // copy node
+        RandomListNode cur = head;
+        while (cur != null) {
+            RandomListNode copy = new RandomListNode(cur.label);
+            copy.next = cur.next;
+            cur.next = copy;
+            cur = cur.next.next;
+        }
+        // change random pointer
+        cur = head;
+        while (cur != null) {
+            cur.next.random = cur.random == null ? null : cur.random.next;
+            cur = cur.next.next;
+        }
+        // change next pointer
+        cur = head;
+        RandomListNode newHead = head.next;
+        while (cur != null && cur.next != null) {
+            RandomListNode tmp = cur.next;
+            cur.next =  cur.next.next;
+            cur = tmp;
+        }
+        return newHead;
+    }
+
+    public RandomListNode copyRandomList_method2(RandomListNode head) {
+        Map<RandomListNode, RandomListNode> map = new HashMap<>();
+        RandomListNode cur = head;
+        while (cur != null) {
+            map.put(cur, new RandomListNode(cur.label));
+            cur = cur.next;
+        }
+
+        cur = head;
+        while (cur != null) {
+            map.get(cur).next = cur.next != null ? map.get(cur.next) : null;
+            map.get(cur).random = cur.random != null ? map.get(cur.random) : null;
+            cur = cur.next;
+        }
+        return map.get(head);
+    }
+
+    private boolean isBadVersion(int i) {
+        // need to be implemented by api
+        return true;
+    }
+    public int firstBadVersion(int n) {
+        int l = 1, r = n;
+        while (l + 1 < r) {
+            int m = l + (r - l) / 2;
+            if (isBadVersion(m)) {
+                r = m;
+            } else {
+                l = m;
+            }
+        }
+        return isBadVersion(l) ? l : r;
     }
 }
