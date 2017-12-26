@@ -126,6 +126,11 @@ private static class Node<E> {
 - Stack space, heap space, GC
 
 #### Java pre-Algorithm
+copyRandomList
+copyRandomList_method2
+isBadVersion
+upsideDownBinaryTree
+upsideDownBinaryTree_method2
 
 #### Java Algorithm
 - Sorted Array to BST
