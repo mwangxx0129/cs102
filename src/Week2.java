@@ -301,4 +301,42 @@ public class Week2 {
         }
         return isBadVersion(l) ? l : r;
     }
+
+    public TreeNode upsideDownBinaryTree(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        Deque<TreeNode> stack = new ArrayDeque<>();
+        TreeNode cur = root;
+        while(cur != null) {
+            stack.offerLast(cur);
+            cur = cur.left;
+        }
+
+        TreeNode newHead = stack.pollLast();
+        TreeNode par = newHead;
+        while (!stack.isEmpty()) {
+            TreeNode now = stack.pollLast();
+            par.left = now.right;
+            par.right = now;
+            par = now;
+        }
+        par.left = null;
+        par.right = null;
+
+        return newHead;
+    }
+
+    public TreeNode upsideDownBinaryTree_method2(TreeNode root) {
+        if (root == null || root.left == null) {
+            return root;
+        }
+        TreeNode newRoot = upsideDownBinaryTree_method2(root.left);
+        root.left.left = root.right;
+        root.left.right = root;
+        root.left = null;
+        root.right = null;
+        return newRoot;
+    }
+
 }
