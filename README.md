@@ -159,3 +159,12 @@ private static class Node<E> {
 - Split Array Largest Sum -
 
 #### Discussion 12_26
+- path Sum
+- Two sum - method 1
+- Two sum - method 2
+- Remove N th Node From Tail 
+- Sort Colors
+- Valid Parentheses
+- Three Sum - method1
+- Three Sum - method2
+- Reverse Node in k-Group
