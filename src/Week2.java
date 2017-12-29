@@ -543,4 +543,29 @@ public class Week2 {
         map.put(curSum, map.get(curSum) - 1);
     }
 
+
+    int res = 0;
+    public int pathSum_leetcode_IV(int[] nums) {
+        if (nums == null || nums.length == 0)
+            return 0;
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int num : nums) {
+            map.put(num / 10, num % 10);
+        }
+        dfs_leetcode_IV(map, 0, nums[0] / 10);
+        return res;
+    }
+    private void dfs_leetcode_IV(Map<Integer, Integer> map, int curSum, int root) {
+        curSum += map.get(root);
+
+        int l = (root / 10 + 1) * 10 + (root % 10) * 2 - 1;
+        int r = l + 1;
+        if (!map.containsKey(l) && !map.containsKey(r)) {
+            res += curSum;
+            return;
+        }
+
+        if (map.containsKey(l)) dfs_leetcode_IV(map, curSum, l);
+        if (map.containsKey(r)) dfs_leetcode_IV(map, curSum, r);
+    }
 }
