@@ -502,4 +502,25 @@ public class Week2 {
         path.remove(path.size() - 1);
     }
 
+    int count = 0;
+    public int pathSum_III(TreeNode root, int sum) {
+        pathSum_III_dfs(root, sum, new ArrayList<Integer>());
+        return count;
+    }
+    private void pathSum_III_dfs(TreeNode root, int sum, List<Integer> path) {
+        if (root == null)
+            return;
+        path.add(root.val);
+        int tmp = sum;
+        for (int i = path.size() - 1; i >= 0; -- i) {
+            tmp -= path.get(i);
+            if (tmp == 0) {
+                count ++;
+            }
+        }
+        pathSum_III_dfs(root.left, sum, path);
+        pathSum_III_dfs(root.right, sum, path);
+        path.remove(path.size() - 1);
+    }
+
 }
