@@ -523,4 +523,24 @@ public class Week2 {
         path.remove(path.size() - 1);
     }
 
+//    int count = 0;
+    public int pathSum_III_method2(TreeNode root, int sum) {
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(0, 1);
+        pathSum_III_method2_dfs(root, 0, sum, map);
+        return count;
+    }
+    private void pathSum_III_method2_dfs(TreeNode root,int curSum, int sum, Map<Integer, Integer> map) {
+        if (root == null) {
+            return;
+        }
+        curSum += root.val;
+        count += map.getOrDefault(curSum - sum, 0);
+        map.put(curSum, map.getOrDefault(curSum, 0) + 1);
+
+        pathSum_III_method2_dfs(root.left, curSum, sum, map);
+        pathSum_III_method2_dfs(root.right, curSum, sum, map);
+        map.put(curSum, map.get(curSum) - 1);
+    }
+
 }
