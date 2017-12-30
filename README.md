@@ -145,9 +145,12 @@ private static class Node<E> {
 - Search in Rotated Sorted Array
 - ZigZag Level Order Traversal
 - Delete a Node in BST
-- Path Sum I~V -
+- Path Sum I
+- Path Sum II
+- Path Sum III
 - Path Sum IV leet code 666
-- Largest BST SubTree -
+- Path Sum V
+- Largest BST SubTree
 
 #### Java Advanced Algorithm
 - sqrt -
