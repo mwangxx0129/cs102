@@ -696,4 +696,12 @@ public class Week2 {
         }
         return helper_sumOfLeftLeaves(root, root.left) + helper_sumOfLeftLeaves(root, root.right);
     }
+
+    public TreeNode invertTree(TreeNode root) {
+        if (root == null) return null;
+        TreeNode left = root.left;
+        root.left = invertTree(root.right);
+        root.right = invertTree(left);
+        return root;
+    }
 }

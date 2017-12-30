@@ -1,3 +1,5 @@
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/fehmicansaglam/progressed.io?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+![Progress](http://progressed.io/bar/50?title=completed) 
 ### Course Syllabus - Java Foundation
 
 | week1 | week2 | week3 | week4 |
@@ -162,9 +164,9 @@ private static class Node<E> {
 - sqrt
 - Count Complete Tree Nodes
 - Find Leaves of Tree - sumOfLeftLeaves leetcode 404
-- Invert Binary tree -
-- Largest BST -
-- Russian Doll Envolopes -
+- Invert Binary tree -?Iterative need to discussion
+- Largest BST
+- Russian Doll Envolopes - ?
 - Is Subsequence -
 - Split Array Largest Sum -
 
