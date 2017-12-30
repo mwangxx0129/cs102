@@ -478,12 +478,14 @@ public class Week2 {
         return root;
     }
 
+    // 1
     public boolean hasPathSum(TreeNode root, int sum) {
         if (root == null) return false;
         if (root.left == null && root.right == null && sum == root.val) return true;
         return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
     }
 
+    // 2
     public List<List<Integer>> pathSum(TreeNode root, int sum) {
         List<List<Integer>> res = new ArrayList<>();
         dfs(root, sum, res, new ArrayList<Integer>());
@@ -502,6 +504,7 @@ public class Week2 {
         path.remove(path.size() - 1);
     }
 
+    // 3
     int count = 0;
     public int pathSum_III(TreeNode root, int sum) {
         pathSum_III_dfs(root, sum, new ArrayList<Integer>());
@@ -524,6 +527,7 @@ public class Week2 {
     }
 
 //    int count = 0;
+    // 3
     public int pathSum_III_method2(TreeNode root, int sum) {
         Map<Integer, Integer> map = new HashMap<>();
         map.put(0, 1);
@@ -544,6 +548,7 @@ public class Week2 {
     }
 
 
+    // 3.5
     int res = 0;
     public int pathSum_leetcode_IV(int[] nums) {
         if (nums == null || nums.length == 0)
@@ -567,5 +572,72 @@ public class Week2 {
 
         if (map.containsKey(l)) dfs_leetcode_IV(map, curSum, l);
         if (map.containsKey(r)) dfs_leetcode_IV(map, curSum, r);
+    }
+
+    // 4
+    int max = Integer.MIN_VALUE;
+    public int maxPathSum(TreeNode root) {
+        helper_maxPathSum(root);
+        return max;
+    }
+    private int helper_maxPathSum(TreeNode root) {
+        if (root == null) return 0;
+        int left = helper_maxPathSum(root.left);
+        int right = helper_maxPathSum(root.right);
+        max = Math.max(max, Math.max(left, 0) + Math.max(right, 0) + root.val);
+        return Math.max(Math.max(left, 0), Math.max(right, 0)) + root.val;
+    }
+
+    // from leaf to leaf
+//    int max = Integer.MIN_VALUE;
+    // 5
+    public int PathSum_V(TreeNode root) {
+        helper_pathSum_V(root);
+        return max;
+    }
+    private int helper_pathSum_V(TreeNode root) {
+        if (root == null) return 0;
+        int left = helper_maxPathSum(root.left);
+        int right = helper_maxPathSum(root.right);
+        if (root.left != null && root.right != null) {
+            max = Math.max(max, left + right + root.val);
+        }
+        if (root.left == null) {
+            return root.val + right;
+        } else if (root.right == null) {
+            return root.val + left;
+        } else {
+            return Math.max(left, right) + root.val;
+        }
+    }
+
+    int maxSize = 0;
+    class RT_largestBSTSubtree {
+        int min;
+        int max;
+        int size;
+        RT_largestBSTSubtree(int min, int max, int size) {
+            this.min = min;
+            this.max = max;
+            this.size = size;
+        }
+    }
+    public int largestBSTSubtree(TreeNode root) {
+        helper_largestBSTSubtree(root);
+        return maxSize;
+    }
+    private RT_largestBSTSubtree helper_largestBSTSubtree(TreeNode root) {
+        if (root == null) return new RT_largestBSTSubtree(Integer.MAX_VALUE, Integer.MIN_VALUE, 0);
+        RT_largestBSTSubtree left = helper_largestBSTSubtree(root.left);
+        RT_largestBSTSubtree right = helper_largestBSTSubtree(root.right);
+        if (left.size == -1 || right.size == -1
+                || root.left != null && left.max >= root.val
+                || root.right != null && right.min <= root.val) {
+            return new RT_largestBSTSubtree(0,0,-1);
+        }
+        maxSize = Math.max(maxSize, left.size + right.size + 1);
+        return new RT_largestBSTSubtree(root.left == null ? root.val : left.min,
+                root.right == null ? root.val : right.max,
+                left.size + right.size + 1);
     }
 }
