@@ -48,13 +48,13 @@ http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/
 
 e.g.
 Arrays toString()
-
-Node<E> in LinkedList<E> 
-## collapsible markdown?
+ 
+## Node<E> in LinkedList<E>
 
 <details><summary>CLICK ME</summary>
 <p>
 #### yes, even hidden code blocks!
+
 ```java
 private static class Node<E> {
     E item;
