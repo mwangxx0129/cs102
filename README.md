@@ -50,7 +50,11 @@ e.g.
 Arrays toString()
 
 Node<E> in LinkedList<E> 
+## collapsible markdown?
 
+<details><summary>CLICK ME</summary>
+<p>
+#### yes, even hidden code blocks!
 ```java
 private static class Node<E> {
     E item;
@@ -63,6 +67,8 @@ private static class Node<E> {
     }
 }
 ```
+</p>
+</details>
 
 #### Java pre-Algorithm
 
