@@ -640,4 +640,60 @@ public class Week2 {
                 root.right == null ? root.val : right.max,
                 left.size + right.size + 1);
     }
+
+    // ------------ java advanced algorithm ------------
+
+    public int mySqrt(int x) {
+        if (x == 0) return x;
+        long l = 0, r = x;
+        while (l + 1 < r) {
+            long m = l + (r - l) / 2;
+            if (m < x / m) {
+                l = m;
+            } else {
+                r = m;
+            }
+        }
+        return r * r <= x ? (int)r : (int)l;
+    }
+
+    public int countNodes(TreeNode root) {
+        if (root == null) return 0;
+        int left = getLeftHeight(root);
+        int right = getRightHeight(root);
+        if (left == right) {
+            return (1 << left) - 1;
+        } else {
+            return 1 + countNodes(root.left) + countNodes(root.right);
+        }
+    }
+    private int getLeftHeight(TreeNode root) {
+        int count = 0;
+        while (root != null) {
+            ++ count;
+            root = root.left;
+        }
+        return count;
+    }
+    private int getRightHeight(TreeNode root) {
+        int count = 0;
+        while (root != null) {
+            ++ count;
+            root = root.right;
+        }
+        return count;
+    }
+
+    public int sumOfLeftLeaves(TreeNode root) {
+        TreeNode dummy = new TreeNode(-1);
+        dummy.right = root;
+        return helper_sumOfLeftLeaves(dummy, root);
+    }
+    private int helper_sumOfLeftLeaves(TreeNode par, TreeNode root) {
+        if (root == null) return 0;
+        if (par.left == root && root.left == null && root.right == null) {
+            return root.val;
+        }
+        return helper_sumOfLeftLeaves(root, root.left) + helper_sumOfLeftLeaves(root, root.right);
+    }
 }
