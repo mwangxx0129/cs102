@@ -292,7 +292,7 @@ class Solution {
 </p>
 </detials>
 
-<details><summary>isValid BST --- inorder (Kth Smallest Element in a BST) </summary>
+<details><summary>levelOrder</summary>
 <p>
 
 ```java
@@ -353,7 +353,7 @@ class Solution{
 </p>
 </detials>
 
-<details><summary>find Leaf </summary>
+<details><summary>find Leaf</summary>
 <p>
 
 ```java
