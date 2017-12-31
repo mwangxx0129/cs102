@@ -179,3 +179,85 @@ private static class Node<E> {
 - Three Sum - method1
 - Three Sum - method2
 - Reverse Node in k-Group
+
+#### Discussion 12_30
+- clean room dfs + grid
+- isValid BST
+<details><summary>isValid BST</summary>
+<p>
+```java
+/*
+                3 (3, min, max)
+               /   \
+  (1, min, 3) 1     5  (5,3,max)
+                  /   \
+      (4, 3, 5) 4      6  (6, 3, max)
+**/
+class Solution{
+    public boolean isValidBST(TreeNode root) {
+        if(root = null) {
+            return true;
+        }
+        return isValidBST(root, Long.MAX_VALUE, Long.MIN_VALUE);
+    }
+    
+    private boolean isValidBST(TreeNode root, long max, long min) {
+        if (root == null) {
+            return true;
+        }
+    
+        //Current Level : Check root.val
+    
+        if(root.val >= max || root.val <= min) {
+            return false;
+        }
+    
+        // Return Left and Right
+        return isValidBST(root.left, root.val, min) && isValidBST(root.right, max, root.val); 
+    }
+}
+```
+</p>
+</details>
+
+- <details><summary>isValid BST buttom up</summary>
+  <p>
+```java
+class Solution {
+    private class RT {
+        boolean isValid;
+        int min;
+        int max;
+        RT(boolean isValid, int min, int max) {
+            this.isValid = isValid;
+            this.min = min;
+            this.max = max;
+        }
+    }
+
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        return helper(root).isValid;
+    }
+
+    private RT helper(TreeNode root) {
+        if (root == null) {
+            return new RT(true, Integer.MAX_VALUE, Integer.MIN_VALUE);
+        }
+        RT l = helper(root.left);
+        RT r = helper(root.right);
+        if (!l.isValid || !r.isValid) {
+            return new RT(false, 0, 0);
+        }
+        if (root.left != null && l.max >= root.val
+                || root.right != null && r.min <= root.val) {
+            return new RT(false, 0, 0);
+        }
+        return new RT(true, Math.min(l.min, root.val), Math.max(r.max, root.val));
+    }
+}
+```
+</p>
+</detials>
