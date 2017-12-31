@@ -22,6 +22,16 @@
 Algorithm Advance: New Problems on Same Topic Correspondingly
 
 ---
+
+### week3
+TODO
+#### Java Foundation
+#### Java pre-Algorithm
+#### Java Algorithm
+#### Java Advanced Algorithm
+#### Discussion
+
+---
 ### week0
 
 - Primitive idea -> Work Solution -> Optimization
@@ -355,6 +365,3 @@ class Solution {
 </p>
 </details>
 
----
-
-### week3
