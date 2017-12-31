@@ -353,7 +353,7 @@ class Solution {
 ```
 
 </p>
-</detials>
+</details>
 
 ---
 
