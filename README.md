@@ -191,7 +191,7 @@ private static class Node<E> {
 走完房间每一格）。
 
 ```
-- isValid BST
+
 <details><summary>isValid BST</summary>
 <p>
 
