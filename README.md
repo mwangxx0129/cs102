@@ -185,14 +185,17 @@ private static class Node<E> {
 - isValid BST
 <details><summary>isValid BST</summary>
 <p>
-```java
-/*
+```
+
                 3 (3, min, max)
                /   \
   (1, min, 3) 1     5  (5,3,max)
                   /   \
       (4, 3, 5) 4      6  (6, 3, max)
-**/
+
+```
+
+```java
 class Solution{
     public boolean isValidBST(TreeNode root) {
         if(root = null) {
