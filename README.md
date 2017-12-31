@@ -186,8 +186,6 @@ private static class Node<E> {
 - levelOrder
 - find Leaf
 
-<details><summary>isValid BST</summary>
-<p>
 
 ```java
 class Solution{
@@ -214,11 +212,7 @@ class Solution{
     }
 }
 ```
-</p>
-</details>
 
-<details><summary>isValid BST --- buttom up</summary>
-<p>
 
 ```java
 class Solution {
@@ -257,11 +251,6 @@ class Solution {
     }
 }
 ```
-</p>
-</detials>
-
-<details><summary>isValid BST --- inorder (Kth Smallest Element in a BST) </summary>
-<p>
 
 ```java
 class Solution {
@@ -283,14 +272,7 @@ class Solution {
     }    
 }
 ```
-</p>
-</detials>
 
----
-
-### levelOrder
-<details><summary>levelOrder</summary>
-<p>
 
 ```java
 /**
@@ -346,15 +328,7 @@ class Solution{
         levelHelper(res, root.right, height+1);
     }
 }
-```
-</p>
-</detials>
 
-### find Leaf
-<details><summary>find Leaf</summary>
-<p>
-
-```java
 class Solution {
     public List<List<Integer>> findLeaves(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
