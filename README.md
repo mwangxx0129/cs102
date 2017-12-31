@@ -292,6 +292,8 @@ class Solution {
 </p>
 </detials>
 
+
+### levelOrder
 <details><summary>levelOrder</summary>
 <p>
 
@@ -353,6 +355,7 @@ class Solution{
 </p>
 </detials>
 
+### find Leaf
 <details><summary>find Leaf</summary>
 <p>
 
