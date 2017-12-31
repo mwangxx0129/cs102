@@ -182,6 +182,15 @@ private static class Node<E> {
 
 #### Discussion 12_30
 - clean room dfs + grid
+```
+  第二轮：
+已知扫地机器人有move(), turn_left(k), turn_right(k), clean()方法，
+机器人能面向东南西北四个方向，move是按当前方向移动一格，
+如果不能移动返回false; turn_left(k), turn_right(k)是旋转k*90度; 
+房间里可能有障碍物，机器人并不知道房间的布局，设计算法让扫地机器人清扫房间（
+走完房间每一格）。
+
+```
 - isValid BST
 <details><summary>isValid BST</summary>
 <p>
@@ -254,5 +263,118 @@ class Solution {
     }
 }
 ```
+</p>
+</detials>
+
+<details><summary>isValid BST --- inorder (Kth Smallest Element in a BST) </summary>
+<p>
+
+```java
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> list = new ArrayList<>();
+        if(root == null) return list;
+        Stack<TreeNode> stack = new Stack<>();
+        while(root != null || !stack.empty()){
+            while(root != null){
+                stack.push(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            list.add(root.val);
+            root = root.right;
+            
+        }
+        return list;
+    }    
+}
+```
+</p>
+</detials>
+
+<details><summary>isValid BST --- inorder (Kth Smallest Element in a BST) </summary>
+<p>
+
+```java
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        Deque<TreeNode> queue = new ArrayDeque<>();
+        if (root == null) {
+            return res;
+        }
+        queue.offerLast(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            List<Integer> sub = new ArrayList<>();
+            for (int i = 0; i < size; ++ i) {
+                TreeNode node = queue.pollFirst();
+                sub.add(node.val);
+                if (node.left != null) {
+                    queue.offerLast(node.left);
+                }
+                if (node.right != null) {
+                    queue.offerLast(node.right);
+                }
+            }
+            res.add(sub);
+        }
+        return res;
+    }
+}
+
+class Solution{
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        levelHelper(res, root, 0);
+        return res;
+    }
+    
+    public void levelHelper(List<List<Integer>> res, TreeNode root, int height) {
+        if (root == null) return;
+        if (height >= res.size()) {
+            res.add(new LinkedList<Integer>());
+        }
+        res.get(height).add(root.val);
+        levelHelper(res, root.left, height+1);
+        levelHelper(res, root.right, height+1);
+    }
+}
+```
+</p>
+</detials>
+
+<details><summary>find Leaf </summary>
+<p>
+
+```java
+class Solution {
+    public List<List<Integer>> findLeaves(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        dfs_findLeaves(root, res);
+        return res;
+    }
+    private int dfs_findLeaves(TreeNode root, List<List<Integer>> res) {
+        if (root == null) return -1;
+        int h = Math.max(dfs_findLeaves(root.left, res),
+                dfs_findLeaves(root.right, res)) + 1;
+        if (h == res.size()) {
+            res.add(new ArrayList<Integer>());
+        }
+        res.get(h).add(root.val);
+        return h;
+    }
+}
+```
+
 </p>
 </detials>
