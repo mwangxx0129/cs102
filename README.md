@@ -165,9 +165,9 @@ private static class Node<E> {
 - Find Leaves of Tree - sumOfLeftLeaves leetcode 404
 - Invert Binary tree -?Iterative need to discussion
 - Largest BST
-- Russian Doll Envolopes - ?
-- Is Subsequence -
-- Split Array Largest Sum -
+- Russian Doll Envolopes -tricky
+- Is Subsequence - need to consider follow up using binary search/Red black tree
+- Split Array Largest Sum - binary search, need to figure out dp solution later
 
 #### Discussion 12_26
 - path Sum

@@ -658,30 +658,56 @@ public class Week2 {
     }
 
     public int countNodes(TreeNode root) {
-        if (root == null) return 0;
-        int left = getLeftHeight(root);
-        int right = getRightHeight(root);
-        if (left == right) {
-            return (1 << left) - 1;
-        } else {
-            return 1 + countNodes(root.left) + countNodes(root.right);
-        }
+        int h = height(root);
+        return h < 0 ? 0 :
+                height(root.right) == h - 1 ? (1 << h) + countNodes(root.right) :
+                        (1 << (h - 1)) + countNodes(root.left);
     }
-    private int getLeftHeight(TreeNode root) {
-        int count = 0;
-        while (root != null) {
-            ++ count;
-            root = root.left;
-        }
-        return count;
+
+    private int height(TreeNode root) {
+        return root == null ? -1 : 1 + height(root.left);
     }
-    private int getRightHeight(TreeNode root) {
-        int count = 0;
-        while (root != null) {
-            ++ count;
-            root = root.right;
+    // public int countNodes(TreeNode root) {
+    //     if (root == null) return 0;
+    //     int left = getLeftHeight(root);
+    //     int right = getRightHeight(root);
+    //     if (left == right) {
+    //         return (1 << left) - 1;
+    //     } else {
+    //         return 1 + countNodes(root.left) + countNodes(root.right);
+    //     }
+    // }
+    // private int getLeftHeight(TreeNode root) {
+    //     int count = 0;
+    //     while (root != null) {
+    //         ++ count;
+    //         root = root.left;
+    //     }
+    //     return count;
+    // }
+    // private int getRightHeight(TreeNode root) {
+    //     int count = 0;
+    //     while (root != null) {
+    //         ++ count;
+    //         root = root.right;
+    //     }
+    //     return count;
+    // }
+
+    public List<List<Integer>> findLeaves(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        dfs_findLeaves(root, res);
+        return res;
+    }
+    private int dfs_findLeaves(TreeNode root, List<List<Integer>> res) {
+        if (root == null) return -1;
+        int h = Math.max(dfs_findLeaves(root.left, res),
+                dfs_findLeaves(root.right, res)) + 1;
+        if (h == res.size()) {
+            res.add(new ArrayList<Integer>());
         }
-        return count;
+        res.get(h).add(root.val);
+        return h;
     }
 
     public int sumOfLeftLeaves(TreeNode root) {
@@ -703,5 +729,84 @@ public class Week2 {
         root.left = invertTree(root.right);
         root.right = invertTree(left);
         return root;
+    }
+
+    public int maxEnvelopes(int[][] envelopes) {
+        if(envelopes == null || envelopes.length == 0
+                || envelopes[0] == null || envelopes[0].length != 2)
+            return 0;
+        Arrays.sort(envelopes, new Comparator<int[]>(){
+            public int compare(int[] arr1, int[] arr2){
+                if(arr1[0] == arr2[0])
+                    return arr2[1] - arr1[1];
+                else
+                    return arr1[0] - arr2[0];
+            }
+        });
+        int dp[] = new int[envelopes.length];
+        int len = 0;
+        for(int[] envelope : envelopes){
+            int index = Arrays.binarySearch(dp, 0, len, envelope[1]);
+            if(index < 0)
+                index = -(index + 1);
+            System.out.println(index);
+            dp[index] = envelope[1];
+            if(index == len)
+                len++;
+        }
+        return len;
+    }
+
+    public boolean isSubsequence(String s, String t) {
+        if (s == null || t == null) {
+            return false;
+        }
+        char[] sCh = s.toCharArray();
+        char[] tCh = t.toCharArray();
+        int l = 0, r = 0;
+        while (l < sCh.length && r < tCh.length) {
+            if (sCh[l] == tCh[r]) {
+                ++ l;
+                ++ r;
+            } else {
+                ++ r;
+            }
+        }
+        return l == sCh.length;
+    }
+
+    public int splitArray(int[] nums, int m) {
+        long max = 0, sum = 0;
+        for (int num : nums) {
+            max = Math.max(max, num);
+            sum += num;
+        }
+        if (m == 1) return (int) sum;
+        // l can not init with 0, be careful
+        // [1,0x7fffffff] 2 is the corner case
+        long l = max, r = sum;
+        while (l + 1 < r) {
+            long mid = l + (r - l) / 2;
+            if (isValid(nums, mid, m)) {
+                r = mid;
+            } else {
+                l = mid;
+            }
+        }
+        return isValid(nums, l, m) ? (int)l : (int)r;
+    }
+    private boolean isValid(int[] nums, long mid, int m) {
+        long sum = 0;
+        int count = 1;
+        for (int num : nums) {
+            sum += num;
+            if (sum > mid) {
+                sum = num;
+                if (++ count > m) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
