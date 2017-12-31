@@ -215,7 +215,8 @@ class Solution{
 </details>
 
 <details><summary>isValid BST --- buttom up</summary>
-  <p>
+<p>
+
 ```java
 class Solution {
     private class RT {
