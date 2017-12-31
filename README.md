@@ -186,6 +186,8 @@ private static class Node<E> {
 - levelOrder
 - find Leaf
 
+<details><summary>isValid BST</summary>
+<p>
 
 ```java
 class Solution{
