@@ -214,7 +214,7 @@ class Solution{
 </p>
 </details>
 
-- <details><summary>isValid BST buttom up</summary>
+<details><summary>isValid BST --- buttom up</summary>
   <p>
 ```java
 class Solution {
