@@ -186,7 +186,7 @@ private static class Node<E> {
 - levelOrder
 - find Leaf
 
-<details><summary>isValid BST</summary>
+<details><summary>source code</summary>
 <p>
 
 ```java
