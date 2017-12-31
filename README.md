@@ -182,7 +182,9 @@ private static class Node<E> {
 
 #### Discussion 12_30
 - clean room dfs + grid
-
+- isValid BST
+- levelOrder
+- find Leaf
 
 <details><summary>isValid BST</summary>
 <p>
