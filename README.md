@@ -120,7 +120,9 @@ private static class Node<E> {
 - ZigZag Level Order Traversal  --- bfs --- if the res save treenode, use res sublist as pointer
 - Delete a Node in BST 
 
-#### Week2
+---
+
+### week2
 #### Java Foundation
 - 2's complement, Modular/Remainder operation, X mod 2 ^ n = X & (2 ^ n - 1)
 - Hash Code: many to one
@@ -352,3 +354,7 @@ class Solution {
 
 </p>
 </detials>
+
+---
+
+### week3
