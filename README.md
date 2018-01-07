@@ -37,6 +37,13 @@ Hw2: LRU cache
 
 TODO
 #### Java pre-Algorithm
+- Permutation I II
+- Kth Largest Element in an Array
+- Kth smallest Element in a Sorted Array - bfs bd
+- Number of Island I II - bfs dfs uf
+- Word Ladder - bfs bi-bfs
+
+
 Permutation
 bfs
 ```
@@ -71,6 +78,14 @@ dfs method 2 3
 [1,2,3][1,3,2][2,1,3][2,3,1][3,2,1][3,1,2]
 ```
 #### Java Algorithm
+- Factor Combination - Solution / Recursive / Strategy Tree
+- Sodoku Solver - dfs
+- Merge k sorted List - bfs merge
+- Find k pairs with smallest sums - bfs
+- Clone graph - bfs dfs
+- Course schedule - directed graph
+- Wall and Gate - multi-bfs
+
 #### Java Advanced Algorithm
 #### Discussion
 
