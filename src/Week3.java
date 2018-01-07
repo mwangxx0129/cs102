@@ -139,8 +139,54 @@ public class Week3 {
     }
 
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        if (!wordList.contains(endWord)) return 0;
+        // return bfs_method1(beginWord, endWord, wordList);
+        return bfs_method2(beginWord, endWord, wordList);
+    }
+
+    private int bfs_method2(String beginWord, String endWord, List<String> wordList) {
         Set<String> dict = new HashSet<>(wordList);
+        if (!dict.contains(endWord)) return 0;
+        Set<String> visited = new HashSet<>();
+        visited.add(beginWord);
+        visited.add(endWord);
+
+        Set<String> beginSet = new HashSet<>();
+        Set<String> endSet = new HashSet<>();
+        beginSet.add(beginWord);
+        endSet.add(endWord);
+        int step = 0;
+        while (!beginSet.isEmpty() && !endSet.isEmpty()) {
+            ++ step;
+            // swap
+            if (beginSet.size() > endSet.size()) {
+                Set<String> tmp = endSet;
+                endSet = beginSet;
+                beginSet = tmp;
+            }
+            Set<String> nextLevel = new HashSet<>();
+            for (String word : beginSet) {
+                for (int i = 0; i < word.length(); ++ i) {
+                    char[] chars = word.toCharArray();
+                    for (char c = 'a'; c <= 'z'; c++) {
+                        chars[i] = c;
+                        String temp = new String(chars);
+                        if (endSet.contains(temp)) {
+                            return step + 1;
+                        }
+                        if (visited.add(temp) && dict.contains(temp)) {
+                            nextLevel.add(temp);
+                        }
+                    }
+                }
+            }
+            beginSet = nextLevel;
+        }
+        return 0;
+    }
+
+    private int bfs_method1(String beginWord, String endWord, List<String> wordList) {
+        Set<String> dict = new HashSet<>(wordList);
+        if (!dict.contains(endWord)) return 0;
 
         Set<String> visited = new HashSet<>();
         Deque<String> queue = new ArrayDeque<>(1000);
@@ -177,5 +223,4 @@ public class Week3 {
         }
         return nextWords;
     }
-
 }
