@@ -164,8 +164,8 @@ public class Week3 {
     }
 
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        // return bfs_method1(beginWord, endWord, wordList);
-        return bfs_method2(beginWord, endWord, wordList);
+         return ladderLength_method1(beginWord, endWord, wordList);
+//        return bfs_method2(beginWord, endWord, wordList);
     }
 
     private int bfs_method2(String beginWord, String endWord, List<String> wordList) {
@@ -209,43 +209,39 @@ public class Week3 {
         return 0;
     }
 
-    private int bfs_method1(String beginWord, String endWord, List<String> wordList) {
+    public int ladderLength_method1(String beginWord, String endWord, List<String> wordList) {
         Set<String> dict = new HashSet<>(wordList);
         if (!dict.contains(endWord)) return 0;
-
         Set<String> visited = new HashSet<>();
-        Deque<String> queue = new ArrayDeque<>(1000);
-
-        int count = 1;
+        Deque<String> queue = new ArrayDeque<>();
+        int step = 0;
         queue.offerLast(beginWord);
         visited.add(beginWord);
 
-        while (!queue.isEmpty()) {
+        while(!queue.isEmpty()) {
+            ++ step;
             int size = queue.size();
             for (int i = 0; i < size; ++ i) {
-                String head = queue.pollFirst();
-                if (head.equals(endWord)) return count;
-                for (String nextWord : getNextWords(head, dict))
-                    if (visited.add(nextWord)) queue.offerLast(nextWord);
-
+                String word = queue.pollFirst();
+                for (String newWord : getNextList(word, dict))
+                    if (visited.add(newWord))
+                        if (newWord.equals(endWord)) return step + 1;
+                        else queue.offerLast(newWord);
             }
-            ++ count;
         }
         return 0;
     }
-
-    private Set<String> getNextWords(String curr, Set<String> dict) {
-        Set<String> nextWords = new HashSet<String>();
-        for (int i = 0; i < curr.length(); i++) {
-            char[] chars = curr.toCharArray();
-            for (char c = 'a'; c <= 'z'; c++) {
-                chars[i] = c;
-                String temp = new String(chars);
-                if (dict.contains(temp)) {
-                    nextWords.add(temp);
-                }
+    private Set<String> getNextList(String word, Set<String> dict) {
+        Set<String> set = new HashSet<String>();
+        for (int i = 0; i < word.length(); ++ i) {
+            char[] sCh = word.toCharArray();
+            for (char c = 'a'; c <= 'z'; ++ c) {
+                sCh[i] = c;
+                String newWord = new String(sCh);
+                if ( dict.contains(newWord)) set.add(newWord);
             }
         }
-        return nextWords;
+        return set;
     }
+
 }
