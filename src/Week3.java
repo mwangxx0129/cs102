@@ -164,11 +164,11 @@ public class Week3 {
     }
 
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-         return ladderLength_method1(beginWord, endWord, wordList);
-//        return bfs_method2(beginWord, endWord, wordList);
+//         return ladderLength_method1(beginWord, endWord, wordList);
+        return bfs_method2(beginWord, endWord, wordList);
     }
 
-    private int bfs_method2(String beginWord, String endWord, List<String> wordList) {
+    private int bfs_method2_pre(String beginWord, String endWord, List<String> wordList) {
         Set<String> dict = new HashSet<>(wordList);
         if (!dict.contains(endWord)) return 0;
         Set<String> visited = new HashSet<>();
@@ -244,4 +244,83 @@ public class Week3 {
         return set;
     }
 
+    public int bfs_method2(String beginWord, String endWord, List<String> wordList) {
+        Set<String> dict = new HashSet<>(wordList);
+        if (!dict.contains(endWord)) return 0;
+        Set<String> visited = new HashSet<>();
+        visited.add(beginWord);
+        visited.add(endWord);
+
+        Set<String> beginSet = new HashSet<>();
+        Set<String> endSet = new HashSet<>();
+        beginSet.add(beginWord);
+        endSet.add(endWord);
+
+        int step = 0;
+        while (!beginSet.isEmpty() && !endSet.isEmpty()) {
+             if (beginSet.size() > endSet.size()) {
+                 Set<String> tmp = beginSet;
+                 beginSet = endSet;
+                 endSet = tmp;
+             }
+            // swap
+//            if (beginSet.size() > endSet.size()) {
+//                Set<String> tmp = endSet;
+//                endSet = beginSet;
+//                beginSet = tmp;
+//            }
+
+            ++ step;
+            Set<String> nextLevel = new HashSet<>();
+            for (String word : beginSet) {
+                for (int i = 0; i < word.length(); ++ i) {
+                    char[] sCh = word.toCharArray();
+                    for (char c = 'a'; c <= 'z'; ++ c) {
+                        sCh[i] = c;
+                        String newWord = new String(sCh);
+                        if (endSet.contains(newWord)) return step + 1;
+                        if (dict.contains(newWord) && visited.add(newWord)) {
+                            nextLevel.add(newWord);
+                        }
+                    }
+                }
+            }
+            beginSet = nextLevel;
+        }
+        return 0;
+    }
+
+    class Point {
+        int x, y;
+        int val;
+        Point(int x, int y, int val) {
+            this.x = x;
+            this.y = y;
+            this.val = val;
+        }
+    }
+    public int kthSmallest(int[][] matrix, int k) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return -1;
+        }
+        int m = matrix.length;
+        int n = matrix[0].length;
+        PriorityQueue<Point> minHeap = new PriorityQueue<>(k, new Comparator<Point>(){
+            @Override
+            public int compare(Point a, Point b) {
+                return a.val - b.val;
+            }
+        });
+
+        for (int i = 0; i < m; ++ i)
+            minHeap.offer(new Point(i, 0, matrix[i][0]));
+        int count  = k;
+        while (k -- > 1) {
+            Point cur = minHeap.poll();
+            if (1 + cur.y < n) {
+                minHeap.offer(new Point(cur.x, 1 + cur.y, matrix[cur.x][1 + cur.y]));
+            }
+        }
+        return minHeap.poll().val;
+    }
 }
