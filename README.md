@@ -88,7 +88,10 @@ dfs method 2 3
 
 #### Java Advanced Algorithm
 #### Discussion
-
+138_Copy_List_with_Random_Pointer
+278_First_Bad_Version
+102 Binary Tree Level Order Traversal
+74_Search_2D_Matrix
 ---
 ### week0
 
