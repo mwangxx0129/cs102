@@ -399,4 +399,24 @@ public class Week3 {
             }
         }
     }
+    public List<Integer> numIslands2(int m, int n, int[][] positions) {
+        List<Integer> res = new ArrayList<>();
+        if (positions == null || positions.length == 0 || positions[0].length == 0) {
+            return res;
+        }
+        char[][] grid = new char[m][n];
+        UF uf = new UF(m * n);
+        for (int i = 0; i < positions.length; ++ i) {
+            int x = positions[i][0];
+            int y = positions[i][1];
+            grid[x][y] = '1';
+            ++ uf.count;
+            if (x + 1 <  m && grid[x + 1][y] == '1') uf.union((x + 1) * n + y, x * n + y);
+            if (x - 1 >= 0 && grid[x - 1][y] == '1') uf.union((x - 1) * n + y, x * n + y);
+            if (y + 1 <  n && grid[x][y + 1] == '1') uf.union(x * n + (y + 1), x * n + y);
+            if (y - 1 >= 0 && grid[x][y - 1] == '1') uf.union(x * n + (y - 1), x * n + y);
+            res.add(uf.count);
+        }
+        return res;
+    }
 }
