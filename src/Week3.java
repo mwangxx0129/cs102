@@ -323,4 +323,80 @@ public class Week3 {
         }
         return minHeap.poll().val;
     }
+
+    public int numIslands(char[][] grid) {
+        return numIslands_uf(grid);
+    }
+    public int numIslands_dfs(char[][] grid) {
+        if (grid == null || grid.length == 0 || grid[0].length == 0) {
+            return 0;
+        }
+        int count = 0;
+        int m = grid.length;
+        int n = grid[0].length;
+        for (int i = 0; i < m; ++ i) {
+            for (int j = 0; j < n; ++ j) {
+                if (grid[i][j] == '1') {
+                    ++ count;
+                    numIslands_dfs_helper(grid, i, j);
+                }
+            }
+        }
+        return count;
+    }
+    private void numIslands_dfs_helper(char[][] grid, int r, int c) {
+        grid[r][c] = '0';
+        if (isValid(grid, r + 1, c)) numIslands_dfs_helper(grid, r + 1, c);
+        if (isValid(grid, r, c + 1)) numIslands_dfs_helper(grid, r, c + 1);
+        if (isValid(grid, r, c - 1)) numIslands_dfs_helper(grid, r, c - 1);
+        if (isValid(grid, r - 1, c)) numIslands_dfs_helper(grid, r - 1, c);
+    }
+    private boolean isValid(char[][] grid, int r, int c) {
+        int m = grid.length;
+        int n = grid[0].length;
+        return r >= 0 && r < m && c >= 0 && c < n && grid[r][c] == '1';
+    }
+
+
+    public int numIslands_uf(char[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        UF uf = new UF(m * n);
+        for (int i = 0; i < m; ++ i) {
+            for (int j = 0; j < n; ++ j) {
+                if (grid[i][j] == '1') {
+                    ++ uf.count;
+                    if (i - 1 >= 0 && i < m && grid[i - 1][j] == '1') uf.union((i - 1) * n + j, i * n + j);
+                    if (j - 1 >= 0 && j < n && grid[i][j - 1] == '1') uf.union(i * n + (j - 1), i * n + j);
+                }
+            }
+        }
+        return uf.count;
+    }
+
+    class UF {
+        public int[] father;
+        public int count;
+        UF(int n) {
+            this.father  = new int[n];
+//            this.count = n;
+            for (int i = 0; i < n; ++ i) {
+                father[i] = i;
+            }
+        }
+        public int find(int a) {
+            int fa = father[a];
+            if (fa == a)
+                return fa;
+            return father[a] = find(father[fa]);
+        }
+        public void union(int a, int b) {
+            int fa = find(a);
+            int fb = find(b);
+            if (fa != fb) {
+                -- count;
+                father[fa] = father[fb];
+            }
+        }
+    }
 }
