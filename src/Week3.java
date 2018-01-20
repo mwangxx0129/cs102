@@ -419,4 +419,17 @@ public class Week3 {
         }
         return res;
     }
+
+    class TreeNode {
+        int val;
+        TreeNode left, right;
+        TreeNode(int val) {
+            this.val = val;
+        }
+    }
+    public TreeNode generateTree() {
+        TreeNode root = new TreeNode(1);
+        return root;
+    }
+
 }

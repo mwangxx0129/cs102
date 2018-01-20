@@ -93,6 +93,9 @@ dfs method 2 3
 102 Binary Tree Level Order Traversal
 74_Search_2D_Matrix
 ---
+####Extra
+230. Kth Smallest Element in a BST 
+
 ### week0
 
 - Primitive idea -> Work Solution -> Optimization

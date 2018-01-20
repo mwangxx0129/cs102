@@ -25,6 +25,10 @@ class Week3Test {
 
         int res  = w3.numIslands_uf(grid);
         System.out.println(res);
+
+
+        Week3.TreeNode root = w3.generateTree();
+        w3.lowestCommonAncestor3(root, root, root);
     }
 
 }
