@@ -432,4 +432,67 @@ public class Week3 {
         return root;
     }
 
+    class LRUCache {
+        class Node {
+            int key,  val;
+            Node prev, next;
+            Node(int key, int val) {
+                this.key = key;
+                this.val = val;
+                prev = null;
+                next = null;
+            }
+        }
+        Map<Integer, Node> map;
+        Node head, tail;
+        int capacity;
+        public LRUCache(int capacity) {
+            head = new Node(-1, -1);
+            tail = new Node(-1, -1);
+            map  = new HashMap<>();
+            head.next = tail;
+            tail.prev = head;
+            this.capacity = capacity;
+        }
+
+        public int get(int key) {
+            if (!map.containsKey(key)) return -1;
+            Node cur = map.get(key);
+            cur.next.prev = cur.prev;
+            cur.prev.next = cur.next;
+            // move to head
+            moveToHead(cur);
+            return map.get(key).val;
+        }
+
+        public void put(int key, int value) {
+            if (get(key) != -1) {
+                map.get(key).val = value;
+                return;
+            }
+            if (map.size() == this.capacity) {
+                map.remove(tail.prev.key);
+                tail.prev = tail.prev.prev;
+                tail.prev.next = tail;
+            }
+            Node cur = new Node(key, value);
+            map.put(key, cur);
+            moveToHead(cur);
+        }
+
+        private void moveToHead(Node cur) {
+            head.next.prev = cur;
+            cur.next = head.next;
+            cur.prev = head;
+            head.next = cur;
+        }
+    }
+
+    /**
+     * Your LRUCache object will be instantiated and called as such:
+     * LRUCache obj = new LRUCache(capacity);
+     * int param_1 = obj.get(key);
+     * obj.put(key,value);
+     */
+
 }

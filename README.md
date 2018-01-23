@@ -26,14 +26,14 @@ Algorithm Advance: New Problems on Same Topic Correspondingly
 ### week3
 
 #### Java Foundation
-Simple Sorting: Insertion Sort is the best of three
-Advanced Sort: Quick Sort(pivot, in-place, not stable)
-Advanced Sort: Merge Sort((low + high) >>> 1, extra space, stable)
-Heap: Complete tree, Array implementation
-Heap Sort:O(log(n)), extra space, not stable
-HW1: Top K numbers
-LinkedListHashMap: Extends HashMap, Insertion order
-Hw2: LRU cache
+- Simple Sorting: Insertion Sort is the best of three
+- Advanced Sort: Quick Sort(pivot, in-place, not stable)
+- Advanced Sort: Merge Sort((low + high) >>> 1, extra space, stable)
+- Heap: Complete tree, Array implementation
+- Heap Sort:O(log(n)), extra space, not stable
+- HW1: Top K numbers
+- LinkedListHashMap: Extends HashMap, Insertion order
+- Hw2: LRU cache
 
 TODO
 #### Java pre-Algorithm
