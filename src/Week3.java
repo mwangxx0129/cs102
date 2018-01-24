@@ -495,4 +495,60 @@ public class Week3 {
      * obj.put(key,value);
      */
 
+    public void solveSudoku(char[][] board) {
+        if (board == null || board.length == 0 || board[0].length == 0) {
+            return;
+        }
+        solveSudoku_dfs(board, 0, 0);
+    }
+    private boolean solveSudoku_dfs(char[][] board, int i, int j) {
+        while (board[i][j] != '.') {
+            // j = j % 9;
+            // i = i + j / 9;
+            // if (i == 9) return true;
+            ++ j;
+            if (j == 9) {
+                if ( i == 8) return true;
+                ++ i;
+                j = 0;
+            }
+        }
+        boolean[] rowChecker = new boolean[9];
+        boolean[] colChecker = new boolean[9];
+        boolean[] subChecker = new boolean[9];
+        fillChecker(board, i, j, rowChecker, colChecker, subChecker);
+        for (char k = '1'; k <= '9'; ++ k) {
+            board[i][j] = k;
+            if (check(rowChecker, colChecker, subChecker, k) && solveSudoku_dfs(board, i, j)) {
+                return true;
+            }
+            board[i][j] = '.';
+        }
+        return false;
+    }
+    private void fillChecker(char[][]board, int r, int c,
+                             boolean[] rowChecker, boolean[] colChecker, boolean[] subChecker) {
+        // fill row
+        for (int i = 0; i < board[0].length; ++ i)
+            if (board[r][i] != '.')
+                rowChecker[board[r][i] - '1'] = true;
+        // fill column
+        for (int i = 0; i < board.length; ++ i)
+            if (board[i][c] != '.')
+                colChecker[board[i][c] - '1'] = true;
+
+        // fill group
+        int startX = r / 3 * 3;
+        int startY = c / 3 * 3;
+        for (int i = startX; i < startX + 3; ++ i)
+            for (int j = startY; j < startY + 3; ++ j)
+                if (board[i][j] != '.')
+                    subChecker[board[i][j] - '1'] = true;
+
+    }
+
+    private boolean check(boolean[] rowChecker, boolean[] colChecker, boolean[] subChecker, char target) {
+        if (rowChecker[target - '1'] || colChecker[target - '1'] || subChecker[target - '1']) return false;
+        return true;
+    }
 }
