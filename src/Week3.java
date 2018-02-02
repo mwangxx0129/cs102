@@ -648,4 +648,97 @@ public class Week3 {
             }
         }
     }
+
+    class SolutionLengthOfLIS_DP {
+        public int lengthOfLIS(int[] nums) {
+            if (nums == null || nums.length == 0) return 0;
+            int n = nums.length;
+            int[] dp = new int[n];
+            int max = 1;
+            Arrays.fill(dp, 1);
+            for (int i = 1; i < n; ++ i) {
+                for (int j = i - 1; j >= 0; -- j) {
+                    if (nums[i] > nums[j]) {
+                        dp[i] = Math.max(dp[i], 1 + dp[j]);
+                    }
+                }
+                max = Math.max(dp[i], max);
+            }
+            return max;
+        }
+    }
+
+    public class SolutionLengthOfLIS_DP_BS {
+        public int lengthOfLIS(int[] nums) {
+            int[] dp = new int[nums.length];
+            int len = 0;
+            for (int num : nums) {
+                int i = Arrays.binarySearch(dp, 0, len, num);
+                if (i < 0) {
+                    i = -(i + 1);
+                }
+                dp[i] = num;
+                if (i == len) {
+                    len++;
+                }
+            }
+            return len;
+        }
+    }
+
+    class SolutionTrapRainWater {
+        public int trapRainWater(int[][] heightMap) {
+            int sum = 0;
+            // corner case
+            if (heightMap == null || heightMap.length <= 2 || heightMap[0].length <= 2) return sum;
+
+            int m = heightMap.length;
+            int n = heightMap[0].length;
+            // def visited
+            boolean[][] visited = new boolean[m][n];
+
+            // init minHeap
+            PriorityQueue<Point> minHeap = new PriorityQueue<>((Point a, Point b) -> a.val - b.val);
+            for (int i = 0; i < m; ++ i) {
+                minHeap.offer(new Point(i, 0, heightMap[i][0]));
+                minHeap.offer(new Point(i, n - 1, heightMap[i][n - 1]));
+                visited[i][0] = true;
+                visited[i][n - 1] = true;
+            }
+            for (int i = 1; i < n - 1; ++ i) {
+                minHeap.offer(new Point(0, i, heightMap[0][i]));
+                minHeap.offer(new Point(m - 1, i, heightMap[m - 1][i]));
+                visited[0][i] = true;
+                visited[m - 1][i] = true;
+            }
+
+            // maintain
+            int[] dx = {-1,1,0,0};
+            int[] dy = {0,0,-1,1};
+            while (!minHeap.isEmpty()) {
+                Point cur = minHeap.poll();
+                for (int k = 0; k < 4; ++ k) {
+                    int nx = dx[k] + cur.x;
+                    int ny = dy[k] + cur.y;
+                    if (valid(heightMap, nx, ny) && !visited[nx][ny]) {
+                        visited[nx][ny] = true;
+                        sum += Math.max(cur.val - heightMap[nx][ny], 0);
+                        minHeap.offer(new Point(nx, ny, Math.max(cur.val, heightMap[nx][ny])));
+                    }
+                }
+            }
+            return sum;
+        }
+        private boolean valid(int[][] heightMap, int x, int y) {
+            return x >= 0 && x < heightMap.length && y >= 0 && y < heightMap[0].length;
+        }
+        class Point {
+            int x, y, val;
+            Point (int x, int y, int val) {
+                this.x = x;
+                this.y = y;
+                this.val = val;
+            }
+        }
+    }
 }
