@@ -551,4 +551,101 @@ public class Week3 {
         if (rowChecker[target - '1'] || colChecker[target - '1'] || subChecker[target - '1']) return false;
         return true;
     }
+
+
+    public class SolutionCloneGraph {
+        class UndirectedGraphNode{
+            int label;
+            List<UndirectedGraphNode> neighbors;
+            UndirectedGraphNode(int label) {
+                this.label = label;
+            }
+        }
+        public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) {
+            if (node == null) return null;
+            // get all nodes
+            Set<UndirectedGraphNode> set = getNodes(node);
+
+            // map node and copy of node
+            Map<UndirectedGraphNode, UndirectedGraphNode> map = new HashMap<>();
+            for (UndirectedGraphNode cur : set) {
+                map.put(cur, new UndirectedGraphNode(cur.label));
+            }
+            // link
+            for (UndirectedGraphNode cur : set) {
+                for (UndirectedGraphNode ne : cur.neighbors) {
+                    map.get(cur).neighbors.add(map.get(ne));
+                }
+            }
+            return map.get(node);
+        }
+        private Set<UndirectedGraphNode> getNodes(UndirectedGraphNode node) {
+            Set<UndirectedGraphNode> set = new HashSet<>();
+            Deque<UndirectedGraphNode> q = new ArrayDeque<>();
+            q.offerLast(node);
+            set.add(node);
+            while(!q.isEmpty()) {
+                UndirectedGraphNode cur = q.pollFirst();
+                for (UndirectedGraphNode ne : cur.neighbors) {
+                    if (set.add(ne)) {
+                        q.offerLast(ne);
+                    }
+                }
+            }
+            return set;
+        }
+    }
+
+    class SolutionWallsAndGates {
+        public void wallsAndGates(int[][] rooms) {
+            // corner case
+            if (rooms == null || rooms.length == 0 || rooms[0].length == 0) return;
+            // for each Point which is 0, go bfs
+            int m = rooms.length;
+            int n = rooms[0].length;
+            for (int i = 0; i < m; ++ i) {
+                for (int j = 0; j < n; ++ j) {
+                    if (rooms[i][j] == 0) {
+                        updateDistance(rooms, new Point(i, j));
+                    }
+                }
+            }
+        }
+
+        int[] dx = {-1,1,0,0};
+        int[] dy = {0,0,-1,1};
+        private void updateDistance(int[][] rooms, Point entry) {
+            int m = rooms.length;
+            int n = rooms[0].length;
+            Deque<Point> q = new ArrayDeque<>();
+            q.offerLast(entry);
+            int count = 0;
+
+            while (!q.isEmpty()) {
+                int size = q.size();
+                ++ count;
+                for (int k = 0; k < size; ++ k) {
+                    Point cur = q.pollFirst();
+                    for (int i = 0; i < 4; ++ i) {
+                        int nx = dx[i] + cur.x;
+                        int ny = dy[i] + cur.y;
+                        if (nx >= 0 && nx < m && ny >= 0 && ny < n && rooms[nx][ny] > 0 && rooms[nx][ny] > count) {
+                            rooms[nx][ny] = count;
+                            q.offerLast(new Point(nx, ny));
+                        }
+                    }
+                }
+
+            }
+
+        }
+
+        class Point {
+            int x, y;
+            Point(int x, int y) {
+                this.x = x;
+                this.y = y;
+            }
+        }
+    }
 }
