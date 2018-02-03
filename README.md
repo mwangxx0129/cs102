@@ -87,11 +87,11 @@ dfs method 2 3
 - Wall and Gate - multi-bfs
 
 #### Java Advanced Algorithm
-- [ ] Trapping Water II
-- [ ] Longest consecutive sequence
-- [ ] Number of island II
-- [ ] House robber 3
-- [ ] Shortest Distance from all building
+- [x] Trapping Water II
+- [x] Longest consecutive sequence
+- [x] Number of island II
+- [x] House robber 3
+- [x] Shortest Distance from all building
 - [ ] Word ladder II
 - [ ] Course schedule II
 - [ ] Alien Dictionary

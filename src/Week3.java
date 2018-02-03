@@ -741,4 +741,28 @@ public class Week3 {
             }
         }
     }
+
+    class SolutionRobIII {
+        public int rob(TreeNode root) {
+            RT res = dfs(root);
+            return Math.max(res.rob, res.nonRob);
+        }
+
+        private RT dfs(TreeNode root) {
+            if (root == null) return new RT(0, 0);
+            RT l = dfs(root.left);
+            RT r = dfs(root.right);
+            return new RT(root.val + l.nonRob + r.nonRob,
+                    Math.max(l.rob, l.nonRob) + Math.max(r.rob, r.nonRob));
+        }
+
+        class RT {
+            int rob;
+            int nonRob;
+            RT (int rob, int nonRob) {
+                this.rob = rob;
+                this.nonRob = nonRob;
+            }
+        }
+    }
 }
