@@ -765,4 +765,82 @@ public class Week3 {
             }
         }
     }
+
+    class SolutionFindLadders {
+        public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+            List<List<String>> res = new ArrayList<>();
+            // corner case
+            Set<String> dict = new HashSet<>(wordList);
+            if (!dict.contains(endWord))  return res;
+            dict.add(beginWord);
+
+            // Build Graph
+            Map<String, List<String>> graph = new HashMap<>();
+            Deque<String> q = new ArrayDeque<>();
+            Map<String, Integer> map = new HashMap<>();
+            int minLen = Integer.MAX_VALUE;
+            int level = 0;
+
+            // init
+            q.offerLast(beginWord);
+            for (String s : dict) {
+                map.put(s, Integer.MAX_VALUE);
+            }
+            map.put(beginWord, level);
+
+            for (String s: dict) {
+                graph.put(s, new ArrayList<>());
+            }
+
+            // Build graph by BFS
+            while (!q.isEmpty()) {
+                ++ level;
+                if (minLen < level) break; // has found
+                int size = q.size();
+                for (int i = 0; i < size; ++ i) {
+                    String curWord = q.pollFirst();
+                    int len = curWord.length();
+                    for (int j = 0; j < len; ++ j) {
+                        char[] sCh = curWord.toCharArray();
+                        for (char c = 'a'; c <= 'z'; ++ c) {
+                            sCh[j] = c;
+                            String newWord = new String(sCh);
+                            if (endWord.equals(newWord)) {
+                                minLen = level;
+                            }
+                            if (dict.contains(newWord)) {
+                                if (map.get(newWord) == level) {
+                                    graph.get(newWord).add(curWord);
+                                } else if (map.get(newWord) > level) {
+                                    q.offerLast(newWord);
+                                    map.put(newWord, level);
+                                    graph.get(newWord).add(curWord);
+                                }
+                            }
+                        }// end for [a-z]
+                    }    // end for size of curWord
+                }        // end for size of queue
+            }            // end for empty of queue
+
+            // Get all path by DFS
+            getAllPath(graph, beginWord, endWord, res, new ArrayList<String>());
+            return res;
+        }
+
+        private void getAllPath(Map<String, List<String>> graph, String beginWord, String endWord,
+                                List<List<String>> res, List<String> path) {
+            if (beginWord.equals(endWord)) {
+                path.add(0, beginWord);
+                res.add(new ArrayList<String>(path));
+                path.remove(0);
+                return;
+            }
+
+            path.add(0, endWord);
+            for (String word : graph.get(endWord)) {
+                getAllPath(graph, beginWord, word, res, path);
+            }
+            path.remove(0);
+        }
+    }
 }
