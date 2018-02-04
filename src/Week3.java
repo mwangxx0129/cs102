@@ -843,4 +843,88 @@ public class Week3 {
             path.remove(0);
         }
     }
+
+    class SolutionCourseScheduleCanFinish {
+        public boolean canFinish(int numCourses, int[][] prerequisites) {
+            // corner case
+            if (numCourses == 0) return true;
+            if (prerequisites.length == 0) return true;
+
+            // Build graph
+            List<List<Integer>> graph = new ArrayList<>();
+            int[] indegree = new int[numCourses];
+            for (int i = 0; i < numCourses; ++ i) {
+                graph.add(new ArrayList<Integer>());
+            }
+            for (int i = 0; i < prerequisites.length; ++ i) {
+                int from = prerequisites[i][1];
+                int to   = prerequisites[i][0];
+                graph.get(from).add(to); // init graph
+                ++ indegree[to]; // init indegree
+            }
+
+            // init Queue with 0 in-degree
+            Deque<Integer> q = new ArrayDeque<>();
+            for (int i = 0; i < indegree.length; ++ i) {
+                if (indegree[i] == 0) {
+                    q.offerLast(i);
+                }
+            }
+
+            // bfs  count
+            int count = 0;
+            while (!q.isEmpty()) {
+                ++ count;
+                int from = q.pollFirst();
+                for (Integer to : graph.get(from)) {
+                    if (indegree[to] -- == 1) {
+                        q.offerLast(to);
+                    }
+                }
+            }
+            return count == numCourses;
+        }
+    }
+
+    class SolutionCourseScheduleII {
+        public boolean canFinish(int numCourses, int[][] prerequisites) {
+            // corner case
+            if (numCourses == 0) return true;
+            if (prerequisites.length == 0) return true;
+
+            // Build graph
+            List<List<Integer>> graph = new ArrayList<>();
+            int[] indegree = new int[numCourses];
+            for (int i = 0; i < numCourses; ++ i) {
+                graph.add(new ArrayList<Integer>());
+            }
+            for (int i = 0; i < prerequisites.length; ++ i) {
+                int from = prerequisites[i][1];
+                int to   = prerequisites[i][0];
+                graph.get(from).add(to); // init graph
+                ++ indegree[to]; // init indegree
+            }
+
+            // init Queue with 0 in-degree
+            Deque<Integer> q = new ArrayDeque<>();
+            for (int i = 0; i < indegree.length; ++ i) {
+                if (indegree[i] == 0) {
+                    q.offerLast(i);
+                }
+            }
+
+            // bfs  count
+            int count = 0;
+            while (!q.isEmpty()) {
+                ++ count;
+                int from = q.pollFirst();
+                for (Integer to : graph.get(from)) {
+                    if (indegree[to] -- == 1) {
+                        q.offerLast(to);
+                    }
+                }
+            }
+            return count == numCourses;
+        }
+    }
 }

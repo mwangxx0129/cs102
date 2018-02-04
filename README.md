@@ -93,7 +93,7 @@ dfs method 2 3
 - [x] House robber 3
 - [x] Shortest Distance from all building
 - [x] Word ladder II
-- [ ] Course schedule II
+- [x] Course schedule I && II
 - [ ] Alien Dictionary
 
 #### Discussion
