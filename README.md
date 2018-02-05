@@ -94,7 +94,7 @@ dfs method 2 3
 - [x] Shortest Distance from all building
 - [x] Word ladder II
 - [x] Course schedule I && II
-- [ ] Alien Dictionary
+- [x] Alien Dictionary
 
 #### Discussion
 - 138_Copy_List_with_Random_Pointer
