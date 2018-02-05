@@ -1,4 +1,4 @@
-![Progress](http://progressed.io/bar/50?title=completed) 
+![Progress](http://progressed.io/bar/75?title=completed) 
 ### Course Syllabus - Java Foundation
 
 | week1 | week2 | week3 | week4 |
