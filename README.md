@@ -26,17 +26,17 @@ Algorithm Advance: New Problems on Same Topic Correspondingly
 
 
 ### Reivew Concept
-Simple Sorting: Insertion Sort is best of three(Comparsion,Swap)
-Advanced Sort: QuickSort (pivot, in-place, not stable)
-Advanced Sort: MergeSort (low + heigh) >>> 1, stable, extra space
-Heap: Complete tree, array impolementation
-Heap Sort: O(nlogn), not stable, extra space
-LinkedHashmap: Extends HashMap, Insertion order
+- Simple Sorting: Insertion Sort is best of three(Comparsion,Swap)
+- Advanced Sort: QuickSort (pivot, in-place, not stable)
+- Advanced Sort: MergeSort (low + heigh) >>> 1, stable, extra space
+- Heap: Complete tree, array impolementation
+- Heap Sort: O(nlogn), not stable, extra space
+- LinkedHashmap: Extends HashMap, Insertion order
 
 
 ### Review Coding
-Top K use minHeap
-Use LinkedHashMap
+- Top K use minHeap
+- Use LinkedHashMap
 
 ### Java 8 new Features
 - Lambda expression ->
