@@ -927,4 +927,76 @@ public class Week3 {
             return count == numCourses;
         }
     }
+
+    public class SolutionAlienOrder {
+//        public static void main(String[] args) {
+//            SolutionAlienOrder test = new SolutionAlienOrder();
+//            String[] input = {"za","zb","ca","cb"};
+//            String res = test.alienOrder(input);
+//            System.out.println(res);
+//
+//        }
+
+        public String alienOrder(String[] words) {
+            // corner case
+            if (words == null || words.length < 1) return "";
+            StringBuilder sb = new StringBuilder();
+
+            // build graph
+            // generate vertex
+            Map<Character, List<Character>> graph = new HashMap<>();
+            int[] inDegree = new int[128];
+            Arrays.fill(inDegree, -1);
+            for (String word : words) {
+                char[] sCh = word.toCharArray();
+                for (char c : sCh) {
+                    if (graph.containsKey(c)) continue;
+                    graph.put(c, new ArrayList<Character>());
+                    inDegree[c] = 0;
+                }
+            }
+
+            // generate edge
+            for (int i = 0; i < words.length - 1; ++ i) {
+                String curWord = words[i];
+                String nextWord = words[i + 1];
+                // find the first diff index
+                int len = Math.min(curWord.length(), nextWord.length());
+                for (int j = 0; j < len; ++ j) {
+                    char from = curWord.charAt(j);
+                    char to = nextWord.charAt(j);
+                    if (from == to) continue;
+                    if (graph.get(from).contains(to)) break;
+                    graph.get(from).add(to); // init edge
+                    ++ inDegree[to]; // init indegree
+                    break;
+                }
+            }
+
+            // init bfs with indegree zero
+            int count = 0;
+            Deque<Character> q = new ArrayDeque<>();
+            for (char c = 'a';  c <= 'z'; ++ c) {
+                if (inDegree[c] == 0) {
+                    sb.append(c);
+                    q.offerLast(c);
+                    ++ count;
+                }
+            }
+
+            while (!q.isEmpty()) {
+                char cur = q.pollFirst();
+                for (Character next : graph.get(cur)) {
+                    if (inDegree[next] -- == 1) {
+                        sb.append(next);
+                        q.offerLast(next);
+                        ++ count;
+                    }
+                }
+            }
+
+            // bfs append("");
+            return count == graph.size() ? sb.toString() : "";
+        }
+    }
 }
