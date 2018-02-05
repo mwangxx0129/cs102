@@ -22,6 +22,38 @@
 Algorithm Advance: New Problems on Same Topic Correspondingly
 
 ---
+### week4
+
+
+### Reivew Concept
+Simple Sorting: Insertion Sort is best of three(Comparsion,Swap)
+Advanced Sort: QuickSort (pivot, in-place, not stable)
+Advanced Sort: MergeSort (low + heigh) >>> 1, stable, extra space
+Heap: Complete tree, array impolementation
+Heap Sort: O(nlogn), not stable, extra space
+LinkedHashmap: Extends HashMap, Insertion order
+
+
+### Review Coding
+Top K use minHeap
+Use LinkedHashMap
+
+### Java 8 new Features
+- Lambda expression ->
+- Functional Interface Predicates,Co
+- Method Reference System.out::println
+- Default Methods implementation in interface
+- Stream sort, map, reduce, max
+- Collectors
+
+
+### Homework
+- Migrate old java code to java 8
+- Review some APIs
+
+- Guava
+
+---
 
 ### week3
 
