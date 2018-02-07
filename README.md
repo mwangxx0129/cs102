@@ -57,7 +57,9 @@ Algorithm Advance: New Problems on Same Topic Correspondingly
 - Count Primes dp
 - Maximum subArray dp
 - Edit distance dfs dp
-- [ ] Unique binary search tree
+- Unique binary search tree
+
+#### Java Algorithm
 
 ---
 

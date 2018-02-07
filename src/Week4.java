@@ -75,4 +75,74 @@ public class Week4 {
             return G[n];
         }
     }
+
+
+
+    class SolutionGetPathSum {
+//        问一道题：
+//        1. dp题。给一个grid的宽和长，求得从左下的点到右下的点所有可能的路径之和。
+//        起点当然是左下，要求每次只能走三个方向， ➡↗↘
+//
+//        follow up: 2d dp -> 1d dp
+
+//        public static void main (String[] args) {
+//            System.out.println("Hello Java");
+//            int[][] grid = {
+//                    {1,2,3},
+//                    {4,5,6},
+//                    {7,8,9}
+//            };
+//            int m = grid.length;
+//            int n = grid[0].length;
+//            System.out.println(getPathSumII(grid, 3, 3));
+//
+//        }
+
+        private int getPathSum(int[][] grid, int m, int n) {
+            int[][] dp = new int[m][n];
+            // init
+            dp[m - 1][0] = grid[m - 1][0];
+            for (int i = m - 2; i >= 0; -- i) {
+                dp[i][0] = dp[i + 1][0] + grid[i][0];
+            }
+            for (int i = 1; i < n; ++ i) {
+                dp[m - 1][i] = dp[m - 1][i - 1] + grid[m - 1][i - 1];
+            }
+
+            for (int i = m - 2; i >= 0; -- i) {
+                for (int j = 1; j < n; ++ j) {
+                    dp[i][j] = dp[i + 1][j] + dp[i + 1][j - 1] + dp[i][j - 1] + grid[i][j];
+                }
+            }
+            return dp[0][n - 1];
+        }
+
+        private int getPathSumII(int[][] grid, int m, int n) {
+            int[]dp = new int[n];
+            // init
+            dp[0] = grid[m - 1][0];
+
+
+            for (int i = 1; i < n; ++ i) {
+                dp[i] = dp[i - 1] + grid[m - 1][i - 1];
+            }
+
+            // fill dp
+            for (int i = m - 2; i >= 0; -- i) {
+                // left <- right
+                for (int j = n - 1; j >= 1; -- j) {
+                    dp[j] = dp[j] + dp[j - 1];
+                }
+                // the left one
+                dp[0] = dp[0] + grid[i][0];
+
+                // left -> right
+                for (int j = 1; j < n; ++ j) {
+                    dp[j] = dp[j] + dp[j - 1] + grid[i][j];
+                }
+            }
+            return dp[n - 1];
+        }
+
+    }
 }
