@@ -52,6 +52,12 @@ Algorithm Advance: New Problems on Same Topic Correspondingly
 - Review some APIs
 
 - Guava
+#### Java pre-Algorithm
+- Climbing Chairs dp
+- Count Primes dp
+- Maximum subArray dp
+- Edit distance dfs dp
+- [ ] Unique binary search tree
 
 ---
 
@@ -67,7 +73,7 @@ Algorithm Advance: New Problems on Same Topic Correspondingly
 - LinkedListHashMap: Extends HashMap, Insertion order
 - Hw2: LRU cache
 
-TODO
+
 #### Java pre-Algorithm
 - Permutation I II
 - Kth Largest Element in an Array
