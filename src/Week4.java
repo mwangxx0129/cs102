@@ -145,4 +145,94 @@ public class Week4 {
         }
 
     }
+    class SolutionMinPathSum {
+        public int minPathSum(int[][] grid) {
+            if (grid == null || grid.length == 0 || grid[0].length == 0)
+                return 0;
+            int m = grid.length;
+            int n = grid[0].length;
+            int[][] dp = new int[m][n];
+
+            dp[0][0] = grid[0][0];
+            for (int i = 1; i < m; ++ i) {
+                dp[i][0] = dp[i - 1][0] + grid[i][0];
+            }
+            for (int i = 1; i < n; ++ i) {
+                dp[0][i] = dp[0][i - 1] + grid[0][i];
+            }
+            for (int i = 1; i < m; ++ i) {
+                for (int j = 1; j < n; ++ j) {
+                    dp[i][j] = Math.min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];
+                }
+            }
+            return dp[m - 1][n - 1];
+        }
+
+        public int minPathSum_optimized_space(int[][] grid) {
+            // conrer case
+            if (grid == null || grid.length == 0 || grid[0].length == 0)
+                return 0;
+            int m = grid.length;
+            int n = grid[0].length;
+
+            // init dp[0... n]
+            int[] dp = new int[n];
+            dp[0] = grid[0][0];
+            for (int i = 1; i < n; ++ i) {
+                dp[i] += dp[i - 1] + grid[0][i];
+            }
+
+            // iterate row by row
+            for (int i = 1; i < m; ++ i) {
+                dp[0] += grid[i][0];
+                for (int j = 1; j < n; ++ j) {
+                    dp[j] = Math.min(dp[j - 1], dp[j]) + grid[i][j];
+                }
+            }
+            return dp[n - 1];
+        }
+    }
+    class SolutionPaintHouse {
+//        public static void main(String[] args) {
+//
+//        }
+        public int minCost(int[][] costs) {
+            if (costs == null || costs.length == 0 || costs[0].length < 3) return 0;
+            int m = costs.length;
+            int[][] dp = new int[m][3];
+
+            dp[0][0] = costs[0][0];
+            dp[0][1] = costs[0][1];
+            dp[0][2] = costs[0][2];
+            System.out.println(dp[0][1]);
+            for (int i = 1; i < m; ++ i) {
+                for (int j = 0; j < 3; ++ j) {
+                    dp[i][j] = costs[i][j] + Math.min(dp[i - 1][(j + 1) % 3], dp[i - 1][(j + 2) % 3]);
+                }
+            }
+            return Math.min(dp[m - 1][0], Math.min(dp[m - 1][1], dp[m - 1][2]));
+        }
+    }
+
+    class SolutionPaintHouseII {
+        public int minCostII(int[][] costs) {
+            if (costs == null || costs.length == 0 || costs[0].length < 1) return 0;
+            int m = costs.length;
+            int n = costs[0].length;
+            for (int i = 1; i < m; ++ i) {
+                for (int j = 0; j < n; ++ j) {
+                    costs[i][j] += findMin(costs[i - 1], j);
+                }
+            }
+            return findMin(costs[m - 1], - 1);
+        }
+        private int findMin(int[] cost, int except) {
+            int min = Integer.MAX_VALUE;
+            for (int i = 0; i < cost.length; ++ i) {
+                if (i == except) continue;
+                min = Math.min(min, cost[i]);
+            }
+            return min;
+        }
+    }
 }

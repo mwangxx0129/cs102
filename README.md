@@ -60,7 +60,19 @@ Algorithm Advance: New Problems on Same Topic Correspondingly
 - Unique binary search tree
 
 #### Java Algorithm
+- 64. Minimum Path Sum
+- REG
+- Paint house --- online algr 
+    1. soultion tree
+    2. dp
+    3. optim space
+    4. greedy
+- Product
+- Jump Game
+- Range sum Query
 
+- Segment Tree
+- Binary Indexed Tree
 ---
 
 ### week3
