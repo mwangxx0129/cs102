@@ -61,14 +61,14 @@ Algorithm Advance: New Problems on Same Topic Correspondingly
 
 #### Java Algorithm
 - 64. Minimum Path Sum
-- REG
+- Regular Expression Matching
 - Paint house --- online algr 
     1. soultion tree
     2. dp
     3. optim space
     4. greedy
 - Product
-- Jump Game
+- Jump Game I && II
 - Range sum Query
 
 - Segment Tree
