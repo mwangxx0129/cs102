@@ -1,7 +1,8 @@
 public class JumpGame {
     public static void main(String[] args) {
-        int[] arr = {2,3,1,1,4};
-        jump(arr);
+        int[] arr = {2,3,0,1,4};
+        int res = jump(arr);
+        System.out.println(res);
     }
     public static int jump(int[] nums) {
         if (nums == null || nums.length == 0) return -1;
@@ -15,6 +16,10 @@ public class JumpGame {
                     min[i] = min[j] + 1;
                     curIndex = j;
                     break;
+                }
+                // if can not reach this point, return cannot Jump
+                if (j == i - 1) {
+                    return -1;
                 }
             }
         }
