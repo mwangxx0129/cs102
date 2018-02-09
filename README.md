@@ -73,6 +73,13 @@ Algorithm Advance: New Problems on Same Topic Correspondingly
 
 - Segment Tree
 - Binary Indexed Tree
+
+### Java Advanced
+- [ ] Interleaving String
+- [ ] Burst Ballon
+- [ ] Create Maximum number
+- [ ] 洗牌算法
+- [ ] 河塘抽样
 ---
 
 ### week3
