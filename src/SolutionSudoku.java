@@ -15,6 +15,7 @@ public class SolutionSudoku {
         boolean res = test.isValidSudoku(board);
         System.out.println(res);
     }
+
     public boolean isValidSudoku(char[][] board) {
         for(int i = 0; i<9; i++) {
             boolean[] rows = new boolean[9];
