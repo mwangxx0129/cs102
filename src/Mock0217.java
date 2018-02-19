@@ -114,6 +114,9 @@ class Mock0217 {
         }
         return res;
     }
+    public static void test() {
+//        foreach ()
+    }
 }
 
 
