@@ -6,7 +6,8 @@ public class SerializeBST {
         root.right = new TreeNode(3);
         String input = c.serialize(root);
         System.out.println(input);
-
+        String test = "1+i";
+        System.out.println(test.split("/+"));
     }
 }
 
