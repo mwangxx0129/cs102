@@ -1,12 +1,24 @@
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Week5 {
     public static void main(String[] args) {
-        System.out.println("N N W N");
-        fly("N N W N");
-        cubeSum(100);
+//        LRUCache lru = new LRUCache(2);
+        LinkedHashMap<Integer, Integer> lru = new LinkedHashMap<>();
+
+        lru.put(1,1);
+        lru.put(2,2);
+        System.out.println(lru.get(1));
+        lru.put(3,3);
+        System.out.println(lru.get(2));
+
+        lru.put(4,4);
+        System.out.println(lru.get(1));
+        System.out.println(lru.get(3));
+        System.out.println(lru.get(4));
     }
+
     public static void fly(String s) {
         String[] commands = s.split(" ");
         int x = 0, y = 0;

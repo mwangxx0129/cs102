@@ -6,7 +6,7 @@
 |Array,List|Recursion,Heap,Stack|Sort Algorithm|JUnit, Test Driven Development|
 |String, StringBuilder|Inner Class, TreeNode|Graph Node Representation|Java 8 Features|
 |Queue,Stack,Deque|Tree Structure, TreeSet| Heap, Priority Queue|Guava(Google Core Java Libraries|
-|LinkedList,ArrayDeque|Hash,HashTable|LRU Cache,LinkedHashMap|Other Open Source Java Library|
+|LinkedList,ArrayDeque|Hash,HashTable|LRUCache Cache,LinkedHashMap|Other Open Source Java Library|
 
 ### Course Syllabus - Java Algorithm
 
@@ -92,7 +92,7 @@ Algorithm Advance: New Problems on Same Topic Correspondingly
 - Heap Sort:O(log(n)), extra space, not stable
 - HW1: Top K numbers
 - LinkedListHashMap: Extends HashMap, Insertion order
-- Hw2: LRU cache
+- Hw2: LRUCache cache
 
 
 #### Java pre-Algorithm
